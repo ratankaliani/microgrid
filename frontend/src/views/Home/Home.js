@@ -1,28 +1,10 @@
-import './Profile.css';
-
+import './Home.css';
 import jwtDecode from 'jwt-decode';
 import React from 'react';
-import Blockies from 'react-blockies';
-
-// import { Auth } from '../types';
-
+import HomeView from "./HomeView.js"
 import {REACT_APP_BACKEND_URL} from "../../assets/constants.js";
 
-// interface Props {
-//   auth: Auth;
-//   onLoggedOut: () => void;
-// }
-
-// interface State {
-//   loading: boolean;
-//   user?: {
-//     id: number;
-//     username: string;
-//   };
-//   username: string;
-// }
-
-export default class Profile extends React.Component {
+export default class Home extends React.Component {
 
     constructor(props) {
         super(props);
@@ -40,10 +22,6 @@ export default class Profile extends React.Component {
         const {
             payload: { id }
         } = jwtDecode(accessToken);
-
-        console.log("auth", this.props.auth);
-        // console.log("payload", payload);
-        console.log("accessToken", accessToken);
 
         fetch(REACT_APP_BACKEND_URL+"/users/"+id, {
             headers: {
@@ -103,25 +81,14 @@ export default class Profile extends React.Component {
         const username = user && user.username;
 
         return (
-            <div className="Profile">
-                <p>
-                    Logged in as <Blockies seed={publicAddress} />
-                </p>
-                <div>
-                    My username is {username ? <pre>{username}</pre> : 'not set.'} My
-                    publicAddress is <pre>{publicAddress}</pre>
-                </div>
-                <div>
-                    <label htmlFor="username">Change username: </label>
-                    <input name="username" onChange={this.handleChange} />
-                    <button disabled={loading} onClick={this.handleSubmit}>
-                        Submit
-                    </button>
-                </div>
-                <p>
-                    <button onClick={onLoggedOut}>Logout</button>
-                </p>
-            </div>
+            <HomeView 
+                loading={loading}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                onLoggedOut={onLoggedOut}
+                publicAddress={publicAddress}
+                username={username}
+            />
         );
     }
 }

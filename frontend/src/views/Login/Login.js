@@ -2,13 +2,9 @@ import './Login.css';
 
 import React from 'react';
 import Web3 from 'web3';
-// import { Auth } from '../types';
+import LoginView from "./LoginView.js"
 
 import {REACT_APP_BACKEND_URL} from "../../assets/constants.js";
-
-// interface Props {
-//   onLoggedIn: (auth: Auth) => void;
-// }
 
 let web3 = undefined; // Will hold the web3 instance
 
@@ -32,7 +28,6 @@ export default class Login extends React.Component {
             method: 'POST'
         });
         let r = await response.json(); 
-        console.log(r.accessToken); 
         return r;
     }
     
@@ -79,9 +74,9 @@ export default class Login extends React.Component {
       // Popup MetaMask confirmation modal to sign message
       .then((user) => this.handleSignMessage(user.publicAddress, user.nonce))
       // Send signature to backend on the /auth route
-      .then((snap) => {console.log(snap.publicAddress, snap.signature); let y = this.handleAuthenticate(snap.publicAddress, snap.signature); console.log("post", y); return y;})
+      .then((snap) => {let y = this.handleAuthenticate(snap.publicAddress, snap.signature); return y;})
       // Pass accessToken back to parent component (to save it in localStorage)
-      .then((token) => {console.log(token); this.props.onLoggedIn(token);})
+      .then((token) => {this.props.onLoggedIn(token);})
       .catch(err => {
         window.alert(err);
         this.setState({ loading: false });
@@ -90,8 +85,6 @@ export default class Login extends React.Component {
 
   handleSignMessage = async (publicAddress, nonce) => {
     try {
-      console.log(publicAddress, "yuh", nonce, `I am signing my one-time nonce: ${nonce}`);
-      web3.eth.getCoinbase((err, coinbase) => {console.log(coinbase)});
       const signature = await web3.eth.personal.sign(
         `I am signing my one-time nonce: ${nonce}`,
         publicAddress,
@@ -114,18 +107,11 @@ export default class Login extends React.Component {
   };
 
   render() {
-    const { loading } = this.state;
     return (
-      <div>
-        <p>
-          Please select your login method.
-          <br />
-          For the purpose of this demo, only MetaMask login is implemented.
-        </p>
-        <button className="Login-button Login-mm" onClick={this.handleClick}>
-          {loading ? 'Loading...' : 'Login with MetaMask'}
-        </button>
-      </div>
+      <LoginView 
+        loading={this.state.loading}
+        handleClick={this.handleClick}
+      />
     );
   }
 }
