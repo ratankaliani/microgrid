@@ -1,6 +1,6 @@
 import './Home.css';
 import React from 'react';
-import logo from '../../assets/img/logo.svg';
+import logo from '../../assets/img/logo.png';
 import Blockies from 'react-blockies';
 
 export default class HomeView extends React.Component {
@@ -14,7 +14,7 @@ export default class HomeView extends React.Component {
             <div className="Home">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to MicroGrid Login</h1>
+                    <h1 className="App-title">you logged in boi</h1>
                 </header>
                 <p>
                     Logged in as <Blockies seed={this.props.publicAddress} />

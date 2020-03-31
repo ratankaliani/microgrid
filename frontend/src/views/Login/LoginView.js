@@ -1,6 +1,7 @@
 import './Login.css';
 import React from 'react';
-import logo from '../../assets/img/logo.svg';
+import MicroGrid from '../../assets/img/microgrid.svg';
+import logo from "../../assets/img/logo.png";
 
 export default class LoginView extends React.Component {
 
@@ -10,19 +11,23 @@ export default class LoginView extends React.Component {
 
     render() {
         return (    
-          <div className="Login">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to MicroGrid Login</h1>
-            </header>
-            <p>
-              Please select your login method.
-              <br />
-              For the purpose of this demo, only MetaMask login is implemented.
-            </p>
-            <button className="Login-button Login-mm" onClick={this.props.handleClick}>
-              {this.props.loading ? 'Loading...' : 'Login with MetaMask'}
-            </button>
+          <div className="login">
+            <div className="login-left-outer">
+                <div className="login-left-inner">
+                    <h1 className="motto">Energy sharing,</h1>
+                    <h1 className="motto">made cheap and easy.</h1>
+                    <h2 className="tagline">Say hello to efficiency and goodbye to wasted potential.</h2>
+                    <button className="login-button" onClick={this.props.handleClick}>
+                        <p className="login-button-text">{this.props.loading ? 'LOADING...' : 'LOGIN WITH METAMASK'}</p>
+                    </button>
+                </div>
+            </div>
+            <div className="login-right">
+                <img src={MicroGrid} alt="microgrid" className="microgrid-img"/>
+                <div className="corner-logo-container">
+                    <img src={logo} alt="logo" className="corner-logo"/>
+                </div>
+            </div>
           </div>
         );
       }
