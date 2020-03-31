@@ -8,7 +8,6 @@ import {
   useHistory,
   useLocation
 } from "react-router-dom";
-import './assets/css/App.css';
 import Login from './views/Login/Login.js';
 import Home from './views/Home/Home.js';
 const LS_KEY = 'login-with-metamask:auth';
