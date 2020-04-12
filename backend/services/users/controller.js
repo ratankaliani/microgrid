@@ -6,18 +6,7 @@ import user from "../../models/user.js";
 import client from "../../mondb.js"
 
 
-//Push data to MongoDB
-client.connect(err => {
-  if (err) throw err;
-  const dbo = client.db("Users");
-  var query = {};
-  dbo.collection("Login/Password").find(query).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-    
-  });
-  client.close();
-});
+
 
 const sequelize = new Sequelize('login-with-metamask-database', '', undefined, {
   dialect: 'sqlite',
@@ -47,7 +36,22 @@ export const get = (req, res, next) => {
 
   return User.findByPk(req.params.userId).then(user => res.json(user)).catch(next);
 };
-export const create = (req, res, next) => User.create(req.body).then(user => res.json(user)).catch(next);
+export const create = (req, res, next) => {
+  console.log(req.body);
+  //Push data to MongoDB
+  client.connect(err => {
+    if (err) throw err;
+    const dbo = client.db("Users");
+    var query = {};
+    dbo.collection("Login/Password").find(query).toArray(function(err, result) {
+      if (err) throw err;
+      // console.log(result);
+      
+    });
+    client.close();
+  });
+  User.create(req.body).then(user => res.json(user)).catch(next);
+}
 export const patch = (req, res, next) => {
   // Only allow to fetch current user
   if (req.user.payload.id != req.params.userId) {
