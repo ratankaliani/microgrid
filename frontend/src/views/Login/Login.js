@@ -71,8 +71,9 @@ export default class Login extends React.Component {
       .then(users =>
         users.length ? users[0] : this.handleSignup(publicAddress)
       )
+      
       // Popup MetaMask confirmation modal to sign message
-      .then(async (user) => {let x = await this.handleSignMessage(user.publicAddress, user.nonce); console.log(x);})
+      .then((user) => this.handleSignMessage(user.publicAddress, user.nonce))
       // Send signature to backend on the /auth route
       .then((snap) => {let y = this.handleAuthenticate(snap.publicAddress, snap.signature); return y;})
       // Pass accessToken back to parent component (to save it in localStorage)

@@ -4,6 +4,21 @@ import path from 'path';
 import Sequelize from 'sequelize';
 import user from "../../models/user.js";
 import client from "../../mondb.js"
+
+
+//Push data to MongoDB
+client.connect(err => {
+  if (err) throw err;
+  const dbo = client.db("Users");
+  var query = {};
+  dbo.collection("Login/Password").find(query).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    
+  });
+  client.close();
+});
+
 const sequelize = new Sequelize('login-with-metamask-database', '', undefined, {
   dialect: 'sqlite',
   storage: path.join(os.tmpdir(), 'db.sqlite'),
