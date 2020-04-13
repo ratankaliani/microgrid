@@ -2,8 +2,6 @@ import sigUtil from 'eth-sig-util';
 import ethUtil from 'ethereumjs-util'; // import { NextFunction, Request, Response } from 'express';
 
 import jwt from 'jsonwebtoken';
-import os from 'os';
-import path from 'path';
 import { config } from '../../constants.js';
 import uri from "../../mondb.js"
 import mongoose from 'mongoose';

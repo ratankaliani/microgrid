@@ -1,8 +1,6 @@
 // import {NextFunction, Request, Response} from 'express';
 import os from 'os';
 import path from 'path';
-import Sequelize from 'sequelize';
-import user from "../../models/user.js";
 import uri from "../../mondb.js"
 import mongoose from 'mongoose';
 import UserLogin from '../../models/userLogin.js';
