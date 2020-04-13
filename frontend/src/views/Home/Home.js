@@ -44,7 +44,6 @@ export default class Home extends React.Component {
         const { user, username } = this.state;
 
         this.setState({ loading: true });
-
         if (!user) {
             window.alert(
                 'The user id has not been fetched yet. Please try again in 5 seconds.'
@@ -52,7 +51,7 @@ export default class Home extends React.Component {
             return;
         }
 
-        fetch(REACT_APP_BACKEND_URL+"/users/"+user.id, {
+        fetch(REACT_APP_BACKEND_URL+"/users/"+user._id, {
             body: JSON.stringify({ username }),
             headers: {
                 Authorization: `Bearer ${accessToken}`,

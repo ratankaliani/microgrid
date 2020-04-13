@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
+import uri from "../mondb.js"
 
+//Connect to mongoose
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const userLoginSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -18,6 +21,12 @@ const userLoginSchema = mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  }
+}, {
+  writeConcern: {
+    w: 'majority',
+    j: true,
+    wtimeout: 1000
   }
 });
 

@@ -12,9 +12,15 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 
 export const findMongo = (req, res, next) => {
   // If a query string ?publicAddress=... is given, then filter results
-  
-  const whereClause = req.query && req.query.publicAddress;
-  return UserLogin.findOne({whereClause})
+  if (req.query && req.query.publicAddress) {
+    const whereClause = req.query.publicAddress;
+    var query = {publicAddress: whereClause};
+  }
+  else {
+    var query = {};
+  }
+  console.log(query);
+  return UserLogin.find(query)
     .exec()
     .then(doc => {
       console.log(doc);
@@ -37,7 +43,7 @@ export const getMongo = (req, res, next) => {
     });
   }
 
-  return UserLogin.findById(req.params._id)
+  return UserLogin.findById(req.params.userId)
   .exec()
   .then(user => res.status(200).json(user))
   .catch(err => {
@@ -47,13 +53,13 @@ export const getMongo = (req, res, next) => {
 };
 
 export const createMongo = (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const login = new UserLogin({
     _id: new mongoose.Types.ObjectId(),
     publicAddress: req.body.publicAddress
     })
     login
-        .update()
+        .save()
         .then(user => {
             console.log(user);
             res.json(user);
@@ -62,14 +68,17 @@ export const createMongo = (req, res, next) => {
     
 }
 export const patchMongo = (req, res, next) => {
+  console.log("Fixing usernames")
   // Only allow to fetch current user
-  if (req.user.payload._id != req.params.userId) {
+  if (req.user.payload.id != req.params.userId) {
     return res.status(401).send({
       error: 'You can can only access yourself'
     });
   }
-
-  return UserLogin.findById(req.params.userId).then(user => {
+  console.log(req);
+  const findUser = UserLogin.findById(req.params.userId);
+  
+  return findUser.then(user => {
     if (!user) {
       return user;
     }
