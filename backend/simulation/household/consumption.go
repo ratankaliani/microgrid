@@ -24,9 +24,12 @@ type Consumption struct {
 
 // Production in mongodb
 type Production struct {
-	Battery float64 `bson:"battery,omitempty" json:"battery"`
-	Model   string  `bson:"model,omitempty" json:"model,omitempty"`
-	Slope   float64 `bson:"slope,omitempty" json:"slope,omitempty"`
+	Battery   float64 `bson:"battery,omitempty" json:"battery"`
+	Model     string  `bson:"model,omitempty" json:"model,omitempty"`
+	Slope     float64 `bson:"slope,omitempty" json:"slope,omitempty"`
+	Period    float64 `bson:"period,omitempty" json:"period,omitempty"`
+	Step      float64 `bson:"step,omitempty" json:"step,omitempty"`
+	Amplitude float64 `bson:"amplitude,omitempty" json:"amplitude,omitempty"`
 }
 
 // User in mongodb
@@ -78,7 +81,7 @@ func Update(ctx context.Context, client *mongo.Client) []UpdateInfo {
 		}
 
 		if user.Consumption.Model == "cyclic" {
-			currUpdateInfo.EnergyConsumed = math.Max(0.1, user.Consumption.Amplitude*math.Sin(2*math.Pi*(1/user.Consumption.Period)*user.Consumption.Step))
+			currUpdateInfo.EnergyConsumed = math.Max(0.05, user.Consumption.Amplitude*math.Sin(2*math.Pi*(1/user.Consumption.Period)*user.Consumption.Step))
 			usersCollection.UpdateOne(
 				ctx,
 				bson.M{"_id": user.ID},
@@ -92,7 +95,20 @@ func Update(ctx context.Context, client *mongo.Client) []UpdateInfo {
 			if user.Production.Model == "linear" {
 				currUpdateInfo.EnergyProduced = user.Production.Slope
 				currUpdateInfo.Producer = true
-				currUpdateInfo.Battery = user.Production.Battery + user.Production.Slope
+				currUpdateInfo.Battery = user.Production.Battery + currUpdateInfo.EnergyProduced
+			}
+
+			if user.Production.Model == "cyclic" {
+				currUpdateInfo.EnergyProduced = math.Max(0.05, user.Production.Amplitude*math.Sin(2*math.Pi*(1/user.Production.Period)*user.Production.Step))
+				currUpdateInfo.Producer = true
+				currUpdateInfo.Battery = user.Production.Battery + currUpdateInfo.EnergyProduced
+				usersCollection.UpdateOne(
+					ctx,
+					bson.M{"_id": user.ID},
+					bson.D{
+						{"$inc", bson.D{{"production.step", 1}}},
+					},
+				)
 			}
 		}
 
