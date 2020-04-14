@@ -71,6 +71,7 @@ export default class Login extends React.Component {
       .then(users =>
         users.length ? users[0] : this.handleSignup(publicAddress)
       )
+      
       // Popup MetaMask confirmation modal to sign message
       .then((user) => this.handleSignMessage(user.publicAddress, user.nonce))
       // Send signature to backend on the /auth route

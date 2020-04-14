@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js",
+    "build": "babel src -d lib",
+    "start": "node --experimental-modules index.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,9 +19,17 @@
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
+    "mongoose": "5.9.7",
+    "mongodb": "^3.5.5",
     "require": "^2.4.20",
     "sequelize": "^5.21.5",
+    "solc": "^0.6.5",
     "sqlite3": "^4.1.1",
     "web3": "^1.2.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0"
   }
 }

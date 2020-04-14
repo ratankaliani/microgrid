@@ -1,3 +1,4 @@
 export const config = {
-    secret: 'supratan' // TODO Put in process.env
+  secret: 'supratan' // TODO Put in process.env
+
 };
