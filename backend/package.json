@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "node index.js",
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "start": "node --experimental-modules index.js"
   },
   "author": "",
   "license": "ISC",
