@@ -1,0 +1,102 @@
+@import "../../assets/css/App.css";
+
+.dashboard {
+    background-color: var(--primary-0);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 32px;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: var(--primary-0);
+    width: 80%;
+}
+
+.dashboard-title {
+    align-self: flex-start;
+    font-size: 72px;
+    color: white;
+    font-family: "Apercu-Medium";
+
+    padding-top: 32px;
+    padding-bottom: 16px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 100%;
+}
+
+.dashboard-subtitle {
+    align-self: flex-start;
+    font-size: 48px;
+    color: white;
+    font-family: "Apercu-Medium";
+
+    padding-bottom: 8px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    font-weight: 400;
+    width: 100%;
+}
+
+.dashboard-graph-container {
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.dashboard-graph-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+}
+
+.dashboard-null {
+    align-self: flex-start;
+    font-size: 24px;
+    color: var(--primary-1);
+    font-family: "Apercu-Medium";
+
+    padding-bottom: 30px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    font-weight: 300;
+}
+
+.label {
+    color: white;
+    font-family: "Apercu-Medium";
+    font-size: 18px;
+}
+
+.chart-title {
+    font-size: 20px;
+    font-weight: 100;
+    color: white;
+    font-family: "Apercu-Medium";
+    align-self: flex-start;
+}
+
+.dashboard-graph {
+    padding-right: 44px;
+    padding-top: 44px;
+    padding-left: 40px;
+    padding-bottom: 28px;
+
+    border-top-right-radius: 22px;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+
+    box-shadow: 12px 16px 32px 0px #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

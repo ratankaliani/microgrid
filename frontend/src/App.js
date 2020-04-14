@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Login from './views/Login/Login.js';
 import Home from './views/Home/Home.js';
+import Dashboard from './views/Dashboard/Dashboard.js';
 const LS_KEY = 'login-with-metamask:auth';
 
 export default class App extends React.Component {
@@ -55,6 +56,11 @@ export default class App extends React.Component {
               ) : (
                 <Login onLoggedIn={this.handleLoggedIn} />
               )}
+            </div>
+          </Route>
+          <Route exact path="/dashboard">
+            <div>
+              <Dashboard />
             </div>
           </Route>
         </Switch>
