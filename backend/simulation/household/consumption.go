@@ -3,18 +3,23 @@ package household
 import (
 	"context"
 	"log"
-	"time"
+	"math"
+	"math/rand"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // Consumption in mongodb
 type Consumption struct {
-	Model string  `bson:"model,omitempty" json:"model,omitempty"`
-	Slope float64 `bson:"slope,omitempty" json:"slope,omitempty"`
+	Model      string  `bson:"model,omitempty" json:"model,omitempty"`
+	Slope      float64 `bson:"slope,omitempty" json:"slope,omitempty"`
+	UpperBound float64 `bson:"upperBound,omitempty" json:"upperBound,omitempty"`
+	LowerBound float64 `bson:"lowerBound,omitempty" json:"lowerBound,omitempty"`
+	Period     float64 `bson:"period,omitempty" json:"period,omitempty"`
+	Step       float64 `bson:"step,omitempty" json:"step,omitempty"`
+	Amplitude  float64 `bson:"amplitude,omitempty" json:"amplitude,omitempty"`
 }
 
 // Production in mongodb
@@ -27,7 +32,6 @@ type Production struct {
 // User in mongodb
 type User struct {
 	ID            primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
-	FakeID        int32              `bson:"id,omitempty" json:"id,omitempty"`
 	Nonce         int32              `bson:"nonce,omitempty" json:"nonce,omitempty"`
 	PublicAddress string             `bson:"publicAddress,omitempty" json:"publicAddress,omitempty"`
 	Username      string             `bson:"username,omitempty" json:"username,omitempty"`
@@ -47,17 +51,8 @@ type UpdateInfo struct {
 }
 
 // Update used by cron job
-func Update() []UpdateInfo {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(
-		"mongodb+srv://omkar:aBFI7WWIXXuwD3Bt@cluster0-iasb3.mongodb.net/test?retryWrites=true&w=majority",
-	))
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	usersCollection := client.Database("Users").Collection("Login/Password")
+func Update(ctx context.Context, client *mongo.Client) []UpdateInfo {
+	usersCollection := client.Database("Users").Collection("userlogins")
 	usersCursor, err := usersCollection.Find(ctx, bson.M{})
 	if err != nil {
 		log.Fatal(err)
@@ -71,14 +66,26 @@ func Update() []UpdateInfo {
 		if err = usersCursor.Decode(&user); err != nil {
 			log.Fatal(err)
 		}
-		if user.Username == "ratan" {
-			continue
-		}
 
 		currUpdateInfo := UpdateInfo{UserID: user.ID, PublicAddress: user.PublicAddress}
 
 		if user.Consumption.Model == "linear" {
 			currUpdateInfo.EnergyConsumed = user.Consumption.Slope
+		}
+
+		if user.Consumption.Model == "random" {
+			currUpdateInfo.EnergyConsumed = (user.Consumption.UpperBound * rand.Float64()) + user.Consumption.LowerBound
+		}
+
+		if user.Consumption.Model == "cyclic" {
+			currUpdateInfo.EnergyConsumed = math.Max(0.1, user.Consumption.Amplitude*math.Sin(2*math.Pi*(1/user.Consumption.Period)*user.Consumption.Step))
+			usersCollection.UpdateOne(
+				ctx,
+				bson.M{"_id": user.ID},
+				bson.D{
+					{"$inc", bson.D{{"consumption.step", 1}}},
+				},
+			)
 		}
 
 		if user.Producer {

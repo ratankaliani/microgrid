@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -8,6 +9,8 @@ import (
 
 	"../household"
 	"github.com/gorilla/websocket"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var upgrader = websocket.Upgrader{
@@ -29,13 +32,22 @@ func simEndpoint(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Simulation in progress...")
 
-	ticker := time.NewTicker(5000 * time.Millisecond)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(
+		"mongodb+srv://ratankaliani:bL0cK%3Fp4rT%2A@cluster0-iasb3.mongodb.net/Users?retryWrites=true&w=majority?authSource=admin",
+	))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	ticker := time.NewTicker(3000 * time.Millisecond)
 	for {
 		select {
 		case t := <-ticker.C:
 			fmt.Println("Tick at", t)
-			updates := household.Update()
-			fmt.Println(updates)
+			updates := household.Update(ctx, client)
 			if err = conn.WriteJSON(updates); err != nil {
 				fmt.Println(err)
 			}
