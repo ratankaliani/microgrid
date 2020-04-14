@@ -3,7 +3,7 @@ import os from 'os';
 import path from 'path';
 import uri from "../../mondb.js"
 import mongoose from 'mongoose';
-import UserLogin from '../../models/userLogin.js';
+import User from '../../models/user.js';
 
 
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -17,7 +17,7 @@ export const findMongo = (req, res, next) => {
   else {
     var query = {};
   }
-  return UserLogin.find(query)
+  return User.find(query)
     .exec()
     .then(doc => {
       res.status(200).json(doc);
@@ -38,7 +38,7 @@ export const getMongo = (req, res, next) => {
     });
   }
 
-  return UserLogin.findById(req.params.userId)
+  return User.findById(req.params.userId)
   .exec()
   .then(user => res.status(200).json(user))
   .catch(err => {
@@ -49,7 +49,7 @@ export const getMongo = (req, res, next) => {
 
 export const createMongo = (req, res, next) => {
   // console.log(req.body);
-  const login = new UserLogin({
+  const login = new User({
     _id: new mongoose.Types.ObjectId(),
     publicAddress: req.body.publicAddress
     })
@@ -69,7 +69,7 @@ export const patchMongo = (req, res, next) => {
       error: 'You can can only access yourself'
     });
   }
-  const findUser = UserLogin.findById(req.params.userId);
+  const findUser = User.findById(req.params.userId);
   
   return findUser.then(user => {
     if (!user) {
