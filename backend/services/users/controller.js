@@ -17,11 +17,9 @@ export const findMongo = (req, res, next) => {
   else {
     var query = {};
   }
-  console.log(query);
   return UserLogin.find(query)
     .exec()
     .then(doc => {
-      console.log(doc);
       res.status(200).json(doc);
     })
     .catch(err => {
@@ -35,7 +33,6 @@ export const getMongo = (req, res, next) => {
   // UserId is the param in /users/:userId
   // We only allow user accessing herself, i.e. require payload.id==userId
   if (req.user.payload.id != req.params.userId) {
-    console.log("WE AT THIS STATMENT", req.user.payload.id, req.params.userId);
     return res.status(401).send({
       error: 'You can can only access yourself'
     });
@@ -59,7 +56,6 @@ export const createMongo = (req, res, next) => {
     login
         .save()
         .then(user => {
-            console.log(user);
             res.json(user);
         })
         .catch(err => console.log(err));
@@ -73,7 +69,6 @@ export const patchMongo = (req, res, next) => {
       error: 'You can can only access yourself'
     });
   }
-  console.log(req);
   const findUser = UserLogin.findById(req.params.userId);
   
   return findUser.then(user => {
