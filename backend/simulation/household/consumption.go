@@ -41,6 +41,7 @@ type User struct {
 	Consumption   Consumption        `bson:"consumption,omitempty" json:"consumption,omitempty"`
 	Production    Production         `bson:"production,omitempty" json:"production,omitempty"`
 	Producer      bool               `bson:"producer,omitempty" json:"producer,omitempty"`
+	CreatedAt     primitive.DateTime `bson:"createdAt,omitempty" json:"createdAt,omitempty"`
 }
 
 // UpdateInfo to be broadcasted
@@ -55,7 +56,7 @@ type UpdateInfo struct {
 
 // Update used by cron job
 func Update(ctx context.Context, client *mongo.Client) []UpdateInfo {
-	usersCollection := client.Database("Users").Collection("userlogins")
+	usersCollection := client.Database("Microgrid").Collection("users")
 	usersCursor, err := usersCollection.Find(ctx, bson.M{})
 	if err != nil {
 		log.Fatal(err)

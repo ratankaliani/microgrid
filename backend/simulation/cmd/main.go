@@ -36,7 +36,7 @@ func simEndpoint(w http.ResponseWriter, r *http.Request) {
 	defer cancel()
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(
-		"mongodb+srv://ratankaliani:bL0cK%3Fp4rT%2A@cluster0-iasb3.mongodb.net/Users?retryWrites=true&w=majority?authSource=admin",
+		"mongodb+srv://ratankaliani:bL0cK%3Fp4rT%2A@cluster0-iasb3.mongodb.net/Microgrid?retryWrites=true&w=majority?authSource=admin",
 	))
 	if err != nil {
 		log.Fatal(err)

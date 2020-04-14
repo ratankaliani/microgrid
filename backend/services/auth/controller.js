@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { config } from '../../constants.js';
 import uri from "../../mondb.js"
 import mongoose from 'mongoose';
-import UserLogin from '../../models/userLogin.js';
+import User from '../../models/user.js';
 
 //Connect to mongoose
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -19,7 +19,7 @@ export const createMongo = (req, res, next) => {
     error: 'Request should have signature and publicAddress'
   });
   var query = {"publicAddress": publicAddress}
-  return UserLogin.findOne(query) 
+  return User.findOne(query) 
   ////////////////////////////////////////////////////
   // Step 1: Get the user with the given publicAddress
   ////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ export const createMongo = (req, res, next) => {
   // Step 2: Verify digital signature
   ////////////////////////////////////////////////////
   .then(user => {
-    if (!(user instanceof UserLogin)) {
+    if (!(user instanceof User)) {
       // Should not happen, we should have already sent the response
       throw new Error('User is not defined in "Verify digital signature".');
     }
@@ -58,7 +58,7 @@ export const createMongo = (req, res, next) => {
   // Step 3: Generate a new nonce for the user
   ////////////////////////////////////////////////////
   .then(user => {
-    if (!(user instanceof UserLogin)) {
+    if (!(user instanceof User)) {
       // Should not happen, we should have already sent the response
       throw new Error('User is not defined in "Generate a new nonce for the user".');
     }
