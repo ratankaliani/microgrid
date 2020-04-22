@@ -35,4 +35,4 @@ const userLoginSchema = mongoose.Schema({
   }
 });
 
-export default mongoose.model('UserLogin', userLoginSchema)
+export default mongoose.model('Transaction', transactionSchema)
