@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -30,4 +30,4 @@ function Sidebar({ items }) {
   )
 }
 
-export default Sidebar
+export default Sidebar*/

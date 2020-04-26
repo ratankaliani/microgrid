@@ -49,10 +49,12 @@ export default class App extends React.Component {
     const { auth } = this.state;
 
     return (
+
       <Router>
         <Switch>
           <Route exact path="/">
             <div>
+
               {auth ? (
                 <Home auth={auth} onLoggedOut={this.handleLoggedOut} />
               ) : (
@@ -62,6 +64,7 @@ export default class App extends React.Component {
           </Route>
           <Route exact path="/dashboard">
             <div>
+              <SidebarView />
               <Dashboard />
             </div>
           </Route>

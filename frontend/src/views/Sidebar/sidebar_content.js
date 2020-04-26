@@ -3,24 +3,24 @@ import PropTypes from "prop-types";
 
 const styles = {
   sidebar: {
-    width: 256,
+    width: 200,
     height: "100%"
   },
   sidebarLink: {
     display: "block",
     padding: "16px 0px",
-    color: "#757575",
+    color: "#FFFFFF",
     textDecoration: "none"
   },
   divider: {
     margin: "8px 0",
     height: 1,
-    backgroundColor: "#757575"
+    backgroundColor: "#5598DF"
   },
   content: {
     padding: "16px",
     height: "100%",
-    backgroundColor: "white"
+    backgroundColor: "#131842"
   }
 };
 

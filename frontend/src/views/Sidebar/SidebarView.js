@@ -4,7 +4,7 @@ import Sidebar from "react-sidebar";
 import SidebarContent from "./sidebar_content";
 
 
-const mql = window.matchMedia(`(min-width: 800px)`);
+const mql = window.matchMedia(`(min-width: 1000px)`);
 
 export default class SidebarView extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class SidebarView extends React.Component {
 
     this.state = {
       docked: mql.matches,
-      open: true
+      open: false
     };
 
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
@@ -35,7 +35,7 @@ export default class SidebarView extends React.Component {
   mediaQueryChanged() {
     this.setState({
       docked: mql.matches,
-      open: true
+      open: false
     });
   }
 
@@ -58,11 +58,7 @@ export default class SidebarView extends React.Component {
     };
 
     return (
-      <Sidebar {...sidebarProps}>
-        <div>
-          <b> Home </b>
-        </div>
-      </Sidebar>
+      <Sidebar {...sidebarProps} />
     );
   }
 }
