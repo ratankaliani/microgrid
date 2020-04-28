@@ -47,8 +47,9 @@
 }
 
 .microgrid-img {
-  width: 75%;
-  margin-top: 84px;
+  width: 220%;
+  margin-top: 80px;
+
 }
 
 .login-button {
@@ -72,7 +73,7 @@
   margin-top: 0px;
   margin-bottom: 0px;
 }
-  
+
 .login-button:hover {
   opacity: 0.9;
 }
