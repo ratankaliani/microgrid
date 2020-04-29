@@ -3,7 +3,9 @@ import os from 'os';
 import path from 'path';
 import uri from "../../mondb.js"
 import mongoose from 'mongoose';
-import UserLogin from '../../models/userLogin.js';
+import User from '../../models/user.js';
+import Match from '../../models/match.js'
+ 
 
 
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});

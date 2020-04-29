@@ -12,6 +12,7 @@ import Login from './views/Login/Login.js';
 import Home from './views/Home/Home.js';
 import Dashboard from './views/Dashboard/Dashboard.js';
 import SidebarView from './views/Sidebar/SidebarView.js';
+import Preferences from './views/Preferences/Preferences.js';
 const LS_KEY = 'login-with-metamask:auth';
 
 
@@ -66,6 +67,13 @@ export default class App extends React.Component {
             <div>
               <SidebarView />
               <Dashboard />
+              
+            </div>
+          </Route>
+          <Route exact path="/prefs">
+            <div>
+              <Preferences />
+              
             </div>
           </Route>
         </Switch>
