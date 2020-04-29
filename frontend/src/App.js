@@ -53,8 +53,8 @@ export default class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/">
+          //<SidebarView />
             <div>
-
               {auth ? (
                 <Home auth={auth} onLoggedOut={this.handleLoggedOut} />
               ) : (
@@ -63,8 +63,9 @@ export default class App extends React.Component {
             </div>
           </Route>
           <Route exact path="/dashboard">
+            <SidebarView />
             <div>
-              <SidebarView />
+
               <Dashboard />
             </div>
           </Route>
