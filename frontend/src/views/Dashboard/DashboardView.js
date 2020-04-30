@@ -31,7 +31,7 @@ export default class DashboardView extends React.Component {
     render() {
         return (
             <div className="dashboard">
-                <div className="container">
+                <div className="dashboard-container">
                     <h1 className="dashboard-title">MicroGrid Dashboard</h1>
 
                     <h2 className="dashboard-subtitle">Consumption</h2>

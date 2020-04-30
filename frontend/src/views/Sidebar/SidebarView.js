@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Sidebar from "react-sidebar";
 import SidebarContent from "./sidebar_content";
 
@@ -52,9 +51,12 @@ export default class SidebarView extends React.Component {
 
     const sidebarProps = {
       sidebar,
+      children: <div></div>,
       docked: this.state.docked,
       open: this.state.open,
-      onSetOpen: this.onSetOpen
+      onSetOpen: this.onSetOpen,
+      defaultSidebarWidth: 300,
+      styles: {sidebar: {zIndex: 1}}
     };
 
     return (

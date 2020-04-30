@@ -11,7 +11,7 @@ import {
 import Login from './views/Login/Login.js';
 import Home from './views/Home/Home.js';
 import Dashboard from './views/Dashboard/Dashboard.js';
-import SidebarView from './views/Sidebar/SidebarView.js';
+import Wallet from './views/Wallet/Wallet.js';
 const LS_KEY = 'login-with-metamask:auth';
 
 
@@ -27,7 +27,7 @@ export default class App extends React.Component {
     // Access token is stored in localstorage
     const ls = window.localStorage.getItem(LS_KEY);
     let auth = false;
-    if (ls === undefined) {
+    if (ls) {
       auth = JSON.parse(ls);
     }
     this.setState({
@@ -53,7 +53,6 @@ export default class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/">
-          //<SidebarView />
             <div>
               {auth ? (
                 <Home auth={auth} onLoggedOut={this.handleLoggedOut} />
@@ -62,12 +61,17 @@ export default class App extends React.Component {
               )}
             </div>
           </Route>
-          <Route exact path="/dashboard">
-            <SidebarView />
+          <Route exact path="/wallet">
             <div>
-
-              <Dashboard />
+              {auth ? (
+                <Wallet auth={auth} onLoggedOut={this.handleLoggedOut} />
+              ) : (
+                <Login onLoggedIn={this.handleLoggedIn} />
+              )}
             </div>
+          </Route>
+          <Route exact path="/dashboard">
+            <Dashboard />
           </Route>
         </Switch>
       </Router>
