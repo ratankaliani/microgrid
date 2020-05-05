@@ -4,28 +4,33 @@ import uri from "../mondb.js"
 //Connect to mongoose
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 
-const userLoginSchema = mongoose.Schema({
+const transactionSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  fromAddress: {
+  buyer: {
     type: String,
     require: true
   },
-  toAddress: {
+  seller: {
     type: String,
     require: true
   },
-  price: {
+  totalPrice: {
     type: Number,
-    default: '',
+    default: 0,
     require: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  energyAmount: {
+    type: Number,
+    default: 0,
+    require: true
   },
-  expiresAt: {
-      type: Date,
-      default: Date.now
+  accepted: {
+    type: Boolean,
+    require: true
+  },
+  pricePerShare: {
+      type: Number,
+      default: 0
   }
 }, {
   writeConcern: {
