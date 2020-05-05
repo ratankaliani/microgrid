@@ -7,6 +7,7 @@ import User from '../../models/user.js';
 
 
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useFindAndModify', false);
 
 export const findMongo = (req, res, next) => {
   // If a query string ?publicAddress=... is given, then filter results
@@ -28,6 +29,16 @@ export const findMongo = (req, res, next) => {
     });
 
 };
+export const updateUser = (req, res, next) => {
+  // If a query string ?publicAddress=... is given, then filter results
+  console.log(req.body);
+  User.findOneAndUpdate({publicAddress: req.body.publicAddress}, req.body, {new: true}, function(err, user) {
+    console.log(user);
+    res.send(user);
+    
+  });
+};
+
 export const getMongo = (req, res, next) => {
   // AccessToken payload is in req.user.payload, especially its `id` field
   // UserId is the param in /users/:userId
@@ -61,6 +72,7 @@ export const createMongo = (req, res, next) => {
         .catch(err => console.log(err));
     
 }
+
 export const patchMongo = (req, res, next) => {
   console.log("Changing ")
   // Only allow to fetch current user
