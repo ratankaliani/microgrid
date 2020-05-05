@@ -1,0 +1,290 @@
+.identicon {
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.wallet {
+    width: 100%;
+    background-color: var(--primary-0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.outer-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.wallet-title {
+    align-self: flex-start;
+    font-size: 72px;
+    color: white;
+    font-family: "Apercu-Medium";
+
+    padding-top: 32px;
+    padding-bottom: 16px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 100%;
+}
+
+.wallet-subtitle {
+    align-self: flex-start;
+    font-size: 48px;
+    color: white;
+    font-family: "Apercu-Medium";
+
+    padding-bottom: 8px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    font-weight: 400;
+    width: 100%;
+}
+
+.filler {
+  width: 128px;
+  height: 100vh;
+  background-color: var(--primary-0);
+}
+
+.primary-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 2;
+}
+
+.secondary-col {
+    display: flex;
+    flex: 1.75;
+    flex-direction: column;
+}
+
+.wallet-container {
+  display: flex;
+  flex-direction: row;
+  z-index: 1;
+}
+
+.buy-price-toggle {
+    margin-top: 24px;
+    max-width: 80%;
+    background-color: var(--secondary-1);
+    width: 450px;
+    height: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 12px 16px 32px 0px #000000;
+}
+
+.sell-price-toggle {
+    margin-top: 24px;
+    max-width: 80%;
+    background-color: var(--secondary-0);
+    width: 450px;
+    height: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 12px 16px 32px 0px #000000;
+}
+
+.toggle-title {
+    font-size: 32px;
+    color: white;
+    font-family: "Apercu-Medium";
+    font-weight: 550;
+    margin: 0px 0px 0px 0px;
+}
+
+.toggle-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.toggle-input {
+    font-size: 56px;
+    color: white;
+    font-family: "Apercu-Medium";
+    font-weight: 700;
+    margin: 0px 0px 0px 0px;
+}
+
+.toggle-info {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-family: "Apercu-Medium";
+    font-weight: 400;
+    margin: 0px 0px 0px 0px;
+    width: 80%;
+}
+
+.adjust-button {
+    margin-top: 4px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+}
+  
+.adjust-sell-button-text {
+    font-family: "Apercu-Medium";
+    color: var(--secondary-0);
+    font-size: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.adjust-buy-button-text {
+    font-family: "Apercu-Medium";
+    color: var(--secondary-1);
+    font-size: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+  
+.adjust-button:hover {
+    opacity: 0.9;
+}
+
+.match-box {
+    margin-top: 24px;
+    max-width: 80%;
+    background-color: var(--primary-1);
+    width: 420px;
+    height: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 12px 16px 32px 0px #000000;
+}
+
+.matches-button {
+    width: 140px;
+    margin-top: 24px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+}
+
+.matches-button-text {
+    font-family: "Apercu-Medium";
+    color: var(--primary-0);
+    font-size: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.matches-button:hover {
+    opacity: 0.9;
+}
+
+.match-box-vendor {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-family: "Apercu-Medium";
+    font-weight: 550;
+    margin: 0px 0px 0px 0px;
+    width: 80%;
+}
+
+.match-box-vendor-value {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-family: "Apercu-Medium";
+    font-weight: 400;
+    margin: 0px 0px 0px 0px;
+    margin-top: -32px;
+    width: 80%;
+}
+
+.match-box-text-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.match-box-text {
+    display: flex;
+    flex: 1;
+    text-align: left;
+    font-size: 20px;
+    color: white;
+    font-family: "Apercu-Medium";
+    font-weight: 400;
+    margin: 0px 0px 0px 0px;
+    width: 80%;
+}
+
+.match-box-display {
+    align-self: center;
+    text-align: center;
+    font-size: 56px;
+    color: white;
+    font-family: "Apercu-Medium";
+    font-weight: 700;
+    margin: 0px 0px 0px 0px;
+    width: 80%;
+}
+
+.accept-button {
+    margin-top: 0px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+}
+
+.accept-button-text {
+    font-family: "Apercu-Medium";
+    color: var(--primary-1);
+    font-size: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.accept-button:hover {
+    opacity: 0.9;
+}

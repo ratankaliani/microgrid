@@ -9,6 +9,16 @@ dashboardRouter.route('/buy').get(controller.buy);
 /** GET /api/dashboard/sell*/
 
 dashboardRouter.route('/sell').get(controller.sell);
+/** POST /api/dashboard/buy*/
+
+dashboardRouter.route('/buy').post(controller.changeBuy);
+/** POST /api/dashboard/sell*/
+
+dashboardRouter.route('/sell').post(controller.changeSell);
+
+
+
+
 /** GET /api/dashboard/buy/:transactionId */
 
 /** Authenticated route */

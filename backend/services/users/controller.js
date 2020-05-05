@@ -62,7 +62,7 @@ export const createMongo = (req, res, next) => {
     
 }
 export const patchMongo = (req, res, next) => {
-  console.log("Fixing usernames")
+  console.log("Changing ")
   // Only allow to fetch current user
   if (req.user.payload.id != req.params.userId) {
     return res.status(401).send({

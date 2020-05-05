@@ -31,10 +31,10 @@ const SidebarContent = props => {
 
   return (
     <div style={styles.content}>
-      <a href="home.html" style={styles.sidebarLink}>
+      <a href="/" style={styles.sidebarLink}>
         Home
       </a>
-      <a href="wallet.html" style={styles.sidebarLink}>
+      <a href="/wallet" style={styles.sidebarLink}>
         Wallet
       </a>
       <div style={styles.divider} />

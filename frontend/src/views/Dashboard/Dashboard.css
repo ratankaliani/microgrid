@@ -10,9 +10,11 @@
     min-height: 100vh;
 }
 
-.container {
+.dashboard-container {
     background-color: var(--primary-0);
     width: 80%;
+    display: flex;
+    flex-direction: column;
 }
 
 .dashboard-title {
