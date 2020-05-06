@@ -12,7 +12,7 @@ const transactionSchema = mongoose.Schema({
   },
   seller: {
     type: String,
-    require: true
+    require: false
   },
   totalPrice: {
     type: Number,
@@ -26,6 +26,7 @@ const transactionSchema = mongoose.Schema({
   },
   accepted: {
     type: Boolean,
+    default: false,
     require: true
   },
   pricePerShare: {
