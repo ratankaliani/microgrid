@@ -6,11 +6,18 @@ export const transactionRouter = express.Router();
 /** GET /api/transaction/buy*/
 
 transactionRouter.route('/update').post(controller.update);
-/** GET /api/dashboard/sell*/
+/** POST /api/transaction/add*/
 
-transactionRouter.route('/add').get(controller.add);
-/** POST /api/dashboard/buy*/
+transactionRouter.route('/add').post(controller.add);
+/** GET /api/transaction/findMin
+ * finds min transaction by price per share
+*/
 
-transactionRouter.route('/findMin').post(controller.findMin);
+transactionRouter.route('/findMin').get(controller.findMin);
+
+/** GET /api/transaction/findAllBuyer
+ * finds all transactions associated with buyer AND/OR seller
+*/
+transactionRouter.route('/findAll').post(controller.findAll);
 
 

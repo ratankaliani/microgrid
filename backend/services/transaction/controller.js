@@ -12,51 +12,78 @@ mongoose.set('useFindAndModify', false);
 
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 export const update = (req, res, next) => {
-  // Filter based on Object id
+  // Filter based on Object id (pass in object id), seller and accepted
   console.log(req.body);
   Transaction.findByIdAndUpdate(req.body.id, req.body, {new: true}, function(err, transaction) {
     console.log(transaction);
     res.send(transaction);
     
   });
-
 };
 export const findMin = (req, res, next) => {
-  // If a query string ?publicAddress=... is given, then filter results
-  if (req.query && req.query.publicAddress) {
-    const whereClause = req.query.publicAddress;
-    var query = {publicAddress: whereClause};
+  // Filter all files and find minimum transaction that is not accepted (no buyer)
+  Transaction
+   .find({"accepted" : false})
+   .sort({"pricePerShare" : 1})
+   .limit(1)
+   .exec(function(err, doc){
+      let minTransaction= doc[0];
+      console.log(minTransaction)
+      res.send(minTransaction)
+  });
+};
+
+export const findAll = (req, res, next) => {
+  // Filter all files and find all transactions by a buyer
+  if (req.body.seller && req.body.buyer) {
+    Transaction
+    .find({"seller" : req.body.seller,
+            "buyer" : req.body.buyer})
+    .exec(function(err, doc){
+        let allTransaction= doc;
+        console.log(minTransaction)
+        res.send(minTransaction)
+    });
+  }
+  else if (req.body.buyer) {
+    Transaction
+    .find({"buyer" : req.body.buyer})
+    .exec(function(err, doc){
+        let allTransaction= doc;
+        console.log(allTransaction)
+        res.send(allTransaction)
+    });
+  }
+  else if (req.body.seller) {
+    Transaction
+    .find({"seller" : req.body.seller})
+    .exec(function(err, doc){
+        let allTransaction= doc;
+        console.log(allTransaction)
+        res.send(allTransaction)
+    });
   }
   else {
-    var query = {};
+    res.send({})
   }
-  return User.find(query)
-    .exec()
-    .then(doc => {
-      res.status(200).json(doc);
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json();
-    });
-
 };
+
+
 export const add = (req, res, next) => {
-  // If a query string ?publicAddress=... is given, then filter results
-  if (req.user.payload.id != req.params.userId) {
-    return res.status(401).send({
-      error: 'You can can only access yourself'
-    });
-  }
-
-  return User.findById(req.params.userId)
-  .exec()
-  .then(user => res.status(200).json(user))
-  .catch(err => {
-    console.log(err)
-    res.status(500).json();
-  });
-
+  // Requires seller, energyAmount and pricePerShare
+  const newTransaction = new Transaction({
+    _id: new mongoose.Types.ObjectId(),
+    buyer: req.body.buyer,
+    energyAmount: req.body.energyAmount,
+    pricePerShare: req.body.pricePerShare,
+    totalPrice: req.body.energyAmount * req.body.pricePerShare
+    })
+    newTransaction
+        .save()
+        .then(transaction => {
+            res.json(transaction);
+        })
+        .catch(err => console.log(err));
 };
 
 
