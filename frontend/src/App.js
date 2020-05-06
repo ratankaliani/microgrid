@@ -11,6 +11,7 @@ import {
 import Login from './views/Login/Login.js';
 import Home from './views/Home/Home.js';
 import Dashboard from './views/Dashboard/Dashboard.js';
+
 import Wallet from './views/Wallet/Wallet.js';
 const LS_KEY = 'login-with-metamask:auth';
 

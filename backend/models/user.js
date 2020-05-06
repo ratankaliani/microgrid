@@ -32,6 +32,7 @@ const userSchema = mongoose.Schema({
     period: {type: Number},
     amplitude: {type: Number},
     step: {type: Number},
+    battery: {type: Number, default: 10}
   },
   producer: {
     type: Boolean,
@@ -42,6 +43,15 @@ const userSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  buyPrice: {
+    type: Number,
+    default: Date.now
+  },
+  sellPrice: {
+    type: Number,
+    default: Date.now
+  },
+
 }, {
   writeConcern: {
     w: 'majority',
