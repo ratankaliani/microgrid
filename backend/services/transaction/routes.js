@@ -16,12 +16,8 @@ transactionRouter.route('/add').post(controller.add);
 transactionRouter.route('/findMin').get(controller.findMin);
 
 /** GET /api/transaction/findAllBuyer
- * finds min transaction by price per share
+ * finds all transactions associated with buyer AND/OR seller
 */
-transactionRouter.route('/findAllBuyer').post(controller.findAllBuyer);
-/** POST /api/transaction/findAllSeller
- * finds min transaction by price per share
-*/
-transactionRouter.route('/findAllSeller').post(controller.findAllSeller);
+transactionRouter.route('/findAll').post(controller.findAll);
 
 

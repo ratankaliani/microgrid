@@ -19,7 +19,6 @@ export const update = (req, res, next) => {
     res.send(transaction);
     
   });
-
 };
 export const findMin = (req, res, next) => {
   // Filter all files and find minimum transaction that is not accepted (no buyer)
@@ -31,32 +30,42 @@ export const findMin = (req, res, next) => {
       let minTransaction= doc[0];
       console.log(minTransaction)
       res.send(minTransaction)
-});
-
-export const findAllBuyer = (req, res, next) => {
-  // Filter all files and find all transactions by a buyer
-  Transaction
-   .find({"buyer" : false})
-   .sort({"pricePerShare" : 1})
-   .limit(1)
-   .exec(function(err, doc){
-      let minTransaction= doc[0];
-      console.log(minTransaction)
-      res.send(minTransaction)
-});
+  });
 };
 
-export const findAllSeller = (req, res, next) => {
+export const findAll = (req, res, next) => {
   // Filter all files and find all transactions by a buyer
-  Transaction
-   .find({"buyer" : false})
-   .sort({"pricePerShare" : 1})
-   .limit(1)
-   .exec(function(err, doc){
-      let minTransaction= doc[0];
-      console.log(minTransaction)
-      res.send(minTransaction)
-});
+  if (req.body.seller && req.body.buyer) {
+    Transaction
+    .find({"seller" : req.body.seller,
+            "buyer" : req.body.buyer})
+    .exec(function(err, doc){
+        let allTransaction= doc;
+        console.log(minTransaction)
+        res.send(minTransaction)
+    });
+  }
+  else if (req.body.buyer) {
+    Transaction
+    .find({"buyer" : req.body.buyer})
+    .exec(function(err, doc){
+        let allTransaction= doc;
+        console.log(allTransaction)
+        res.send(allTransaction)
+    });
+  }
+  else if (req.body.seller) {
+    Transaction
+    .find({"seller" : req.body.seller})
+    .exec(function(err, doc){
+        let allTransaction= doc;
+        console.log(allTransaction)
+        res.send(allTransaction)
+    });
+  }
+  else {
+    res.send({})
+  }
 };
 
 
