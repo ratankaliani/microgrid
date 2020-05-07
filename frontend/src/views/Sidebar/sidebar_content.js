@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./Sidebar.css"
 
 const styles = {
   sidebar: {
@@ -8,19 +9,17 @@ const styles = {
   },
   sidebarLink: {
     display: "block",
-    padding: "16px 0px",
     color: "#FFFFFF",
-    textDecoration: "none"
-  },
-  divider: {
-    margin: "8px 0",
-    height: 1,
-    backgroundColor: "#5598DF"
+    fontFamily: "Apercu-Medium",
+    textDecoration: "none",
+    width: 200
   },
   content: {
     padding: "16px",
+    paddingTop: "32px",
     height: "100%",
-    backgroundColor: "#131842"
+    backgroundColor: "#131842",
+    borderRight: "solid white 2px"
   }
 };
 
@@ -31,15 +30,17 @@ const SidebarContent = props => {
 
   return (
     <div style={styles.content}>
-      <a href="/" style={styles.sidebarLink}>
-        Home
+      <div className="sidebar-link">
+        <p className="sidebar-link-text" style={{fontSize: 32}}>{props.username.toUpperCase()}</p>
+      </div>
+      <a href="/" className="sidebar-link">
+        <p className="sidebar-link-text">{props.selected == "home" ? "HOME" : "Home"}</p>
       </a>
-      <a href="/wallet" style={styles.sidebarLink}>
-        Wallet
+      <a href="/wallet" className="sidebar-link">
+      <p className="sidebar-link-text">{props.selected == "wallet" ? "WALLET" : "Wallet"}</p>
       </a>
-      <div style={styles.divider} />
-      <a href="prefs.html" style={styles.sidebarLink}>
-        Preferences
+      <a href="/" className="sidebar-link">
+      <p className="sidebar-link-text">Log out</p>
       </a>
     </div>
   );

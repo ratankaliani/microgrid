@@ -2,3 +2,21 @@
   max-width: 240px;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.sidebar-link {
+  display: flex;
+  text-decoration: none;
+  width: 200px;
+}
+
+.sidebar-link-text {
+  color: white;
+  font-family: 'Apercu-Medium';
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 20px;
+}
