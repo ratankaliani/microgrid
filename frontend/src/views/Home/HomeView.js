@@ -1,4 +1,5 @@
 import './Home.css';
+import '../../assets/css/App.css';
 import React from 'react';
 import SidebarView from '../Sidebar/SidebarView.js';
 import {List, ListItem} from "@material-ui/core";
@@ -47,7 +48,19 @@ export default class HomeView extends React.Component {
                     </div>
                     <div className="wallet">
                         <div className="outer-container">
-                            <p className="wallet-title">Home</p>
+                            <div className="page-header">
+                                <p className="home-title">Hello, {this.props.username}</p>
+                                <div className="battery-card">
+                                    <div className="battery">
+                                        <div className="battery-fill" style={{flex: this.props.battery}}>
+                                        </div>
+                                        <div className="battery-empty" style={{flex: 100 - this.props.battery}}>
+                                        </div>
+                                    </div>
+                                    <p className="battery-text">Battery: {Math.round((this.props.battery / 100) * 100)}%</p>
+                                    <p className="battery-text">Energy: {this.props.battery} kWh</p>
+                                </div>
+                            </div>
                             <div className="container">
                                 <div className="transaction-col">
                                     <p className="home-subtitle">BOUGHT</p>

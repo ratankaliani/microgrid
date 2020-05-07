@@ -1,4 +1,5 @@
 import './Wallet.css';
+import '../../assets/css/App.css';
 import React from 'react';
 import logo from '../../assets/img/logo.png';
 import SidebarView from '../Sidebar/SidebarView.js';
@@ -19,7 +20,19 @@ export default class WalletView extends React.Component {
                     </div>
                     <div className="wallet">
                         <div className="outer-container">
-                            <p className="wallet-title">MicroGrid Wallet</p>
+                            <div className="page-header">
+                                <p className="wallet-title">Wallet</p>
+                                <div className="battery-card">
+                                    <div className="battery">
+                                        <div className="battery-fill" style={{flex: this.props.battery}}>
+                                        </div>
+                                        <div className="battery-empty" style={{flex: 100 - this.props.battery}}>
+                                        </div>
+                                    </div>
+                                    <p className="battery-text">Battery: {Math.round((this.props.battery / 100) * 100)}%</p>
+                                    <p className="battery-text">Energy: {this.props.battery} kWh</p>
+                                </div>
+                            </div>
                             <div className="container">
                                 <div className="primary-col">
                                     <p className="wallet-subtitle">For Buyers</p>

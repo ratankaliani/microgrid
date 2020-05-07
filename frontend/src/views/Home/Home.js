@@ -41,7 +41,9 @@ export default class Home extends React.Component {
             console.log(user);
             this.setState({
                 user: user,
-                publicAddress: user.publicAddress
+                publicAddress: user.publicAddress,
+                username: user.username,
+                battery: user.production.battery
             });
             return user.publicAddress;
         })
@@ -112,6 +114,7 @@ export default class Home extends React.Component {
                 soldTransactions={this.state.soldTransactions}
                 boughtTransactions={this.state.boughtTransactions}
                 updateSellPrice={this.updateSellPrice}
+                battery={this.state.battery}
             />
         );
     }
