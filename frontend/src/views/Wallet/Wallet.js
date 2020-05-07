@@ -85,13 +85,13 @@ export default class Wallet extends React.Component {
             method: 'GET'
         })
         
-        .then(response => {
-            response.json()
-        })
+        .then(user =>       
+            user.json()
+        )
         .then(tx => {
             console.log(tx);
             //Handles if the buyPrice is less than or equal to the PPS
-            if (tx != null && tx.pricePerShare <= this.state.user.buyPrice) {
+            if (tx != null && tx.pricePerShare <= this.state.buyPrice) {
                 this.setState({
                     txPPS: tx.pricePerShare,
                     seller: tx.seller,
