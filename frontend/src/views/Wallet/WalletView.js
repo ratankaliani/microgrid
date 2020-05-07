@@ -8,11 +8,13 @@ export default class WalletView extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props)
+        // console.log(props)
     }
 
     render() {
+        // console.log("Render user", this.props.user);
         return (
+            
             <div>
                 <SidebarView />
                 <div className="wallet-container">
@@ -64,11 +66,11 @@ export default class WalletView extends React.Component {
                                     <div className="sell-price-toggle" style={{marginTop: 32, height: 300}}>
                                         <p className="toggle-title">MAKE LISTING</p>
                                         <div className="match-box-text-row">
-                                            <p className="match-box-text"><b>Shares</b>: 10</p>
+                                            <p className="match-box-text"><b>Shares</b>: 5</p>
                                             <p className="match-box-text"><b>Price</b>: {this.props.sellPrice} ETH</p>
                                         </div>
-                                        <p className="toggle-info">This will create an energy listing that buyers in your network can purchase.</p>
-                                        <button className="adjust-button" onClick={this.props.createListing(this.props.user)}>
+                                        <p className="toggle-info">{this.props.createListingMessage}</p>
+                                        <button className="adjust-button" onClick={this.props.createListing.bind(this, this.props.user)}>
                                             <p className="adjust-sell-button-text">CREATE</p>
                                         </button>
                                     </div>
@@ -88,10 +90,10 @@ export default class WalletView extends React.Component {
                                         <p className="match-box-vendor-value">{this.props.seller}</p>
                                         <p className="match-box-display">{this.props.txPrice} ETH</p>
                                         <div className="match-box-text-row">
-                                            <p className="match-box-text"><b>Units</b>: {this.props.txEnergyAmount} kWh</p>
+                                            <p className="match-box-text"><b>Shares</b>: {this.props.txEnergyAmount} kWh</p>
                                             <p className="match-box-text"><b>Price</b>: {this.props.txPPS} ETH</p>
                                         </div>
-                                        <button className="accept-button" onClick={this.props.acceptTransaction(this.props.tx)}>
+                                        <button className="accept-button" onClick={this.props.acceptTransaction.bind(this, this.props.tx, this.props.user)}>
                                             <p className="accept-button-text">ACCEPT</p>
                                         </button>
                                     </div>

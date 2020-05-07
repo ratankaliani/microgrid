@@ -22,62 +22,117 @@ export default class Wallet extends React.Component {
             username: "",
             sellPrice: 0,
             buyPrice: 0,
-            seller: null,
+            seller: "No match found.",
             txPrice: 0,
             txEnergyAmount: 0,
             txPPS: 0,
-            tx: null
+            tx: null,
+            createListingMessage: "This will create an energy listing that buyers in your network can purchase."
 
         };
         this.findMatch = this.findMatch.bind(this);
-        this.acceptTransaction = this.acceptTransaction.bind(this);
-        this.createListing = this.createListing.bind(this);
+        this.acceptTransaction = this.acceptTransaction;
+        this.createListing = this.createListing;
     }
-    createListing = (user) => {
-        if (user != {} && user != null) {
-            console.log("Create Listing");
-            console.log(user)
+    createListing = (currentUser) => {
+        console.log(currentUser)
+        if (currentUser != {} && currentUser != null && currentUser != false && currentUser.production.battery >= 5) {
+            // console.log("Battery", user.production.battery)
+            // console.log("Create Listing");
+            // console.log("Current User", user)
             const response = fetch(REACT_APP_BACKEND_URL+"/transaction/add", {
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "energyAmount": 10,
-                    "pricePerShare": user.sellPrice,
-                    "seller": user.publicAddress
+                    "energyAmount": 5,
+                    "pricePerShare": currentUser.sellPrice,
+                    "seller": currentUser.publicAddress
                 }),
                 method: 'POST'
             })
-            .then(response => response.json())
+            .then(listing => listing.json())
             .then(updatedTx => {
-                console.log(updatedTx);
-            })
+                // console.log("New Transaction", updatedTx);
+                currentUser.production.battery = currentUser.production.battery - 5
+                // console.log(user.production.battery)
+            }).then(
+                response => fetch(REACT_APP_BACKEND_URL+"/users/update", {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "publicAddress": currentUser.publicAddress,
+                        "production": currentUser.production
+                    }),
+                    method: 'POST'
+                })
+                .then(listing => listing.json())
+                .then(updatedUser => {
+                    // console.log("Updated User", updatedUser);
+                    if (this.state.createListingMessage == "Not enough energy in battery.") {
+                        this.setState({
+                            createListingMessage: "This will create an energy listing that buyers in your network can purchase."
+                        })
+                    } 
+                })
+            )
+            
         }
+        else if (currentUser != null && currentUser != {}){
+            // console.log("Not enough energy!")
+            if (this.state.createListingMessage != "Not enough energy in battery.") {
+                this.setState({
+                    createListingMessage: "Not enough energy in battery."
+                })
+            }   
+        }
+        
     }
-    acceptTransaction = (minTransaction) => {
-        if (minTransaction != {} && minTransaction != null) {
-            console.log("Update Transaction");
-            console.log(minTransaction)
+    acceptTransaction = (minTransaction, user) => {
+        // console.log("Opened Function")
+        // console.log("tx", minTransaction)
+        // console.log("user", user)
+        if (minTransaction != {} && minTransaction != null && user != null) {
+            // console.log("Update Transaction");
+            
             const response = fetch(REACT_APP_BACKEND_URL+"/transaction/update", {
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     "id": minTransaction._id,
-                    "buyer": this.state.user.publicAddress,
+                    "buyer": user.publicAddress,
                     "accepted": true
                 }),
                 method: 'POST'
             })
             .then(response => response.json())
-            .then(updatedTx => {
-                console.log(updatedTx);
-            })
+            .then(minTx => {
+                // console.log("Minimum Transaction", minTx);
+                user.production.battery = user.production.battery + 5
+            }).then(
+                response => fetch(REACT_APP_BACKEND_URL+"/users/update", {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "publicAddress": user.publicAddress,
+                        "production": user.production
+                    }),
+                    method: 'POST'
+                })
+                .then(listing => listing.json())
+                .then(updatedUser => {
+                    
+                    // console.log("Updated User", updatedUser);
+                })
+            )
         }
     }
 
     findMatch = () => {
-        console.log("Got to Find Match")
+        // console.log("Got to Find Match")
         const response = fetch(REACT_APP_BACKEND_URL+"/transaction/findMin", {
             headers: {
                 'Content-Type': 'application/json'
@@ -89,7 +144,7 @@ export default class Wallet extends React.Component {
             user.json()
         )
         .then(tx => {
-            console.log(tx);
+            // console.log("found minimum transactino", tx);
             //Handles if the buyPrice is less than or equal to the PPS
             if (tx != null && tx.pricePerShare <= this.state.buyPrice) {
                 this.setState({
@@ -133,7 +188,7 @@ export default class Wallet extends React.Component {
         })
         .then(response => response.json()
         .then(user => {
-            console.log(user);
+            // console.log("Changing user", user);
             this.setState({
                 user: user,
                 producer: user.producer,
@@ -158,7 +213,7 @@ export default class Wallet extends React.Component {
         const { loading, user } = this.state;
 
         const username = user && user.username;
-        console.log(this.findMatch);
+        // console.log("Render user", this.state.user);
         return (
             <WalletView 
                 loading={loading}
@@ -178,6 +233,7 @@ export default class Wallet extends React.Component {
                 acceptTransaction = {this.acceptTransaction}
                 findMatch = {this.findMatch}
                 createListing = {this.createListing}
+                createListingMessage = {this.state.createListingMessage}
                 
             />
             
