@@ -17,6 +17,7 @@ export default class WalletView extends React.Component {
                 <SidebarView 
                     username={this.props.username}
                     selected="wallet"
+                    onLoggedOut={this.props.onLoggedOut}
                 />
                 <div className="wallet-container">
                     <div className="wallet-filler">

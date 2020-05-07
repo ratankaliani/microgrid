@@ -39,8 +39,8 @@ const SidebarContent = props => {
       <a href="/wallet" className="sidebar-link">
       <p className="sidebar-link-text">{props.selected == "wallet" ? "WALLET" : "Wallet"}</p>
       </a>
-      <a href="/" className="sidebar-link">
-      <p className="sidebar-link-text">Log out</p>
+      <a href="/" onClick={(e) => {e.preventDefault(); console.log("IN HERE BB"); props.onLoggedOut()}} className="sidebar-link">
+        <p className="sidebar-link-text">Log out</p>
       </a>
     </div>
   );
