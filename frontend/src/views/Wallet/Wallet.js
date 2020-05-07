@@ -123,10 +123,6 @@ export default class Wallet extends React.Component {
                     method: 'POST'
                 })
                 .then(listing => listing.json())
-                .then(updatedUser => {
-                    
-                    // console.log("Updated User", updatedUser);
-                })
             )
         }
     }
@@ -166,12 +162,15 @@ export default class Wallet extends React.Component {
                 });
             }
             
-        }).then(
-            // console.log(this.state)
-        );
+        })
 
     }
+    updateBuyPrice = (event) => {
+        
+    }
+    updateSellPrice = (event) => {
 
+    }
     componentDidMount() {
         const {
             auth: { accessToken }
