@@ -45,10 +45,13 @@ export default class WalletView extends React.Component {
                                     <div className="buy-price-toggle">
                                         <p className="toggle-title">BUY PRICE</p>
                                         <div className="toggle-display">
-                                            <p className="toggle-input">{this.props.buyPrice} ETH</p>
-                                            <button className="adjust-button">
-                                                <p className="adjust-buy-button-text">ADJUST</p>
-                                            </button>
+                                            <form onSubmit={this.props.updateBuyPrice}>
+                                                <label className="toggle-input" value={this.props.buyPrice} htmlFor="buy">{this.props.buyPrice} ETH</label>
+                                                <input className="toggle-input" id="buy" name="buy" type="text"></input>
+                                                <button className="adjust-button">
+                                                    <p className="adjust-sell-button-text">ADJUST</p>
+                                                </button>
+                                            </form>
                                         </div>
                                         <p className="toggle-info">This is your minimum price per share (1 kWh). You will only buy energy shares at this price or below.</p>
                                     </div>
@@ -60,10 +63,13 @@ export default class WalletView extends React.Component {
                                         <div className="sell-price-toggle">
                                             <p className="toggle-title">SELL PRICE</p>
                                             <div className="toggle-display">
-                                                <p className="toggle-input">{this.props.sellPrice} ETH</p>
-                                                <button className="adjust-button">
-                                                    <p className="adjust-sell-button-text">ADJUST</p>
-                                                </button>
+                                                <form>
+                                                    <label className="toggle-input" value={this.props.sellPrice} for="buy"> ETH</label>
+                                                    <input className="toggle-input" id="buy" name="buy" type="text"></input>
+                                                    <button className="adjust-button">
+                                                        <p className="adjust-sell-button-text">ADJUST</p>
+                                                    </button>
+                                                </form>
                                             </div>
                                             <p className="toggle-info">This is your minimum price per share (1 kWh). You will only sell energy shares at this price or above.</p>
                                         </div> :

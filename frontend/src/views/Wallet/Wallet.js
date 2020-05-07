@@ -166,7 +166,9 @@ export default class Wallet extends React.Component {
 
     }
     updateBuyPrice = (event) => {
-        
+        event.preventDefault();
+        const data = new FormData(event.target);
+        console.log(data.buy)
     }
     updateSellPrice = (event) => {
 
@@ -237,6 +239,7 @@ export default class Wallet extends React.Component {
                 createListingMessage = {this.state.createListingMessage}
                 
                 battery={this.state.battery}
+                updateBuyPrice={this.updateBuyPrice}
             />
             
         );

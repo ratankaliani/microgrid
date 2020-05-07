@@ -125,6 +125,8 @@
     font-family: "Apercu-Medium";
     font-weight: 700;
     margin: 0px 0px 0px 0px;
+    position: relative;
+    z-index: 1;
 }
 
 .toggle-info {
