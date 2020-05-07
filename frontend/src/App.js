@@ -27,7 +27,7 @@ export default class App extends React.Component {
     // Access token is stored in localstorage
     const ls = window.localStorage.getItem(LS_KEY);
     let auth = false;
-    if (ls) {
+    if (ls && ls != "{\"error\":\"Signature verification failed\"}") {
       auth = JSON.parse(ls);
     }
     this.setState({

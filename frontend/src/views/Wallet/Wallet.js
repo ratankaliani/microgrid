@@ -46,7 +46,8 @@ export default class Wallet extends React.Component {
                 user: user,
                 producer: user.producer,
                 sellPrice: user.sellPrice,
-                buyPrice: user.buyPrice
+                buyPrice: user.buyPrice,
+                battery: user.production.battery
             });
         })
         .catch(window.alert));
@@ -74,6 +75,7 @@ export default class Wallet extends React.Component {
                 sellPrice={this.state.sellPrice}
                 buyPrice={this.state.buyPrice}
                 producer={this.state.producer}
+                battery={this.state.battery}
             />
         );
     }

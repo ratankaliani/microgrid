@@ -1,12 +1,52 @@
 .identicon {
-    border-radius: 50%;
-    vertical-align: middle;
+  border-radius: 50%;
+  vertical-align: middle;
 }
 
-.Home {
-  text-align: center;
+.wallet {
   width: 100%;
-  z-index: 0;
+  background-color: var(--primary-0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.outer-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.home-title {
+  align-self: flex-start;
+  font-size: 72px;
+  color: white;
+  font-family: "Apercu-Medium";
+
+  padding-top: 32px;
+  padding-bottom: 16px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 100%;
+}
+
+.home-subtitle {
+  font-size: 24px;
+  color: white;
+  font-family: "Apercu-Medium";
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  margin-top: 0px;
+  margin-left: 0px;
+  font-weight: 400;
 }
 
 .filler {
@@ -15,43 +55,124 @@
   background-color: var(--primary-0);
 }
 
-.home-container {
+.transaction-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.glance-col {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wallet-container {
   display: flex;
   flex-direction: row;
   z-index: 1;
 }
-  
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.transaction-card {
+  margin-bottom: 36px;
+  min-height: 100px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  max-width: 100%;
+  width: 300px;
+  background-color: var(--secondary-1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 12px 16px 32px 0px #000000;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 50vh;
+.sold-transaction-card {
+  margin-top: 24px;
+  min-height: 100px;
+  max-width: 80%;
+  width: 300px;
+  background-color: var(--secondary-0);
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-evenly;
+  box-shadow: 12px 16px 32px 0px #000000;
+}
+
+.glance-card {
+  max-width: 80%;
+  min-height: 100px;
+  padding-top: 16px;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+  width: 700px;
+  background-color: var(--secondary-1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 12px 16px 32px 0px #000000;
+}
+
+.glance-card-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.transaction-header-grid {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.transaction-header-grid-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 4px;
+}
+
+.transaction-header-grid-elem {
+  display: flex;
+  flex: 1;
+  font-size: 13px;
   color: white;
+  font-family: "Apercu-Medium";
+  text-align: left;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
-.App-link {
-  color: #61dafb;
+.glance-card-header {
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  font-family: "Apercu-Medium";
+  font-weight: 300px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.glance-card-subtitle {
+  text-align: left;
+  font-size: 14px;
+  align-self: flex-start;
+  color: white;
+  font-family: "Apercu-Medium";
+  font-weight: 300px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
+
+
+

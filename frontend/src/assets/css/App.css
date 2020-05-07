@@ -19,3 +19,52 @@
     font-family: "Recoleta Bold";
     src: url("../../assets/fonts/Recoleta_Bold.otf") format("opentype");
 }
+
+.page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .battery-card {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    padding-bottom: 16px;
+  }
+  
+  .battery {
+    border: solid white 2px;
+    border-radius: 10px;
+    height: 50px;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+    padding: 8px;
+  }
+  
+  .battery-text {
+    text-align: left;
+    font-size: 14px;
+    align-self: flex-start;
+    color: white;
+    font-family: "Apercu-Medium";
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .battery-fill {
+    background-color: white;
+    border: solid white 2px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  
+  .battery-empty {
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+  }
