@@ -125,6 +125,8 @@
     font-family: "Apercu-Medium";
     font-weight: 700;
     margin: 0px 0px 0px 0px;
+    position: relative;
+    z-index: 1;
 }
 
 .toggle-info {
@@ -149,6 +151,8 @@
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
   
 .adjust-sell-button-text {
@@ -198,6 +202,8 @@
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .matches-button-text {
@@ -206,6 +212,18 @@
     font-size: 18px;
     margin-top: 0px;
     margin-bottom: 0px;
+    
+}
+.matches-button-button {
+    font-family: "Apercu-Medium";
+    color: var(--primary-0);
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 .matches-button:hover {
@@ -275,6 +293,8 @@
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .accept-button-text {
@@ -287,4 +307,17 @@
 
 .accept-button:hover {
     opacity: 0.9;
+}
+
+.find-min-null {
+    align-self: flex-start;
+    font-size: 24px;
+    color: var(--primary-1);
+    font-family: "Apercu-Medium";
+
+    padding-bottom: 30px;
+    margin-bottom: 0px;
+    margin-top: 16px;
+    margin-left: 0px;
+    font-weight: 300;
 }

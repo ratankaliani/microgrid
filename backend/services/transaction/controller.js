@@ -28,7 +28,6 @@ export const findMin = (req, res, next) => {
    .limit(1)
    .exec(function(err, doc){
       let minTransaction= doc[0];
-      console.log(minTransaction)
       res.send(minTransaction)
   });
 };
@@ -41,8 +40,7 @@ export const findAll = (req, res, next) => {
             "buyer" : req.body.buyer})
     .exec(function(err, doc){
         let allTransaction= doc;
-        console.log(minTransaction)
-        res.send(minTransaction)
+        res.send(allTransaction)
     });
   }
   else if (req.body.buyer) {
@@ -50,7 +48,6 @@ export const findAll = (req, res, next) => {
     .find({"buyer" : req.body.buyer})
     .exec(function(err, doc){
         let allTransaction= doc;
-        console.log(allTransaction)
         res.send(allTransaction)
     });
   }
@@ -59,7 +56,6 @@ export const findAll = (req, res, next) => {
     .find({"seller" : req.body.seller})
     .exec(function(err, doc){
         let allTransaction= doc;
-        console.log(allTransaction)
         res.send(allTransaction)
     });
   }
@@ -73,7 +69,7 @@ export const add = (req, res, next) => {
   // Requires seller, energyAmount and pricePerShare
   const newTransaction = new Transaction({
     _id: new mongoose.Types.ObjectId(),
-    buyer: req.body.buyer,
+    seller: req.body.seller,
     energyAmount: req.body.energyAmount,
     pricePerShare: req.body.pricePerShare,
     totalPrice: req.body.energyAmount * req.body.pricePerShare
