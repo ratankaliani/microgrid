@@ -192,7 +192,9 @@ export default class Wallet extends React.Component {
                 user: user,
                 producer: user.producer,
                 sellPrice: user.sellPrice,
-                buyPrice: user.buyPrice
+                buyPrice: user.buyPrice,
+                battery: user.production.battery,
+                username: user.username
             });
         }));
 
@@ -218,7 +220,7 @@ export default class Wallet extends React.Component {
                 loading={loading}
                 onLoggedOut={onLoggedOut}
                 publicAddress={publicAddress}
-                username={username}
+                username={this.state.username}
                 updateSellPrice={this.updateSellPrice}
                 sellPrice={this.state.sellPrice}
                 buyPrice={this.state.buyPrice}
@@ -234,6 +236,7 @@ export default class Wallet extends React.Component {
                 createListing = {this.createListing}
                 createListingMessage = {this.state.createListingMessage}
                 
+                battery={this.state.battery}
             />
             
         );
