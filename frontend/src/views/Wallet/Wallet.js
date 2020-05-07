@@ -37,7 +37,7 @@ export default class Wallet extends React.Component {
         this.createListing = this.createListing;
     }
     createListing = (currentUser) => {
-        console.log(currentUser)
+        console.log(currentUser);
         if (currentUser != {} && currentUser != null && currentUser != false && currentUser.production.battery >= 5) {
             // console.log("Battery", user.production.battery)
             // console.log("Create Listing");
@@ -56,7 +56,8 @@ export default class Wallet extends React.Component {
             .then(listing => listing.json())
             .then(updatedTx => {
                 // console.log("New Transaction", updatedTx);
-                currentUser.production.battery = currentUser.production.battery - 5
+                currentUser.production.battery = currentUser.production.battery - 5;
+                this.setState({battery: currentUser.production.battery});
                 // console.log(user.production.battery)
             }).then(
                 response => fetch(REACT_APP_BACKEND_URL+"/users/update", {
@@ -139,11 +140,11 @@ export default class Wallet extends React.Component {
             },
             method: 'GET'
         })
-        
         .then(user =>       
             user.json()
         )
         .then(tx => {
+            console.log("TRANSACIONT", tx);
             // console.log("found minimum transactino", tx);
             //Handles if the buyPrice is less than or equal to the PPS
             if (tx != null && tx.pricePerShare <= this.state.buyPrice) {
