@@ -32,10 +32,16 @@ export default class HomeView extends React.Component {
     }
 
     shorten = (text) => {
-        if (text.length > 7) {
-            return text.slice(0, 7) + "..."
-        } else {
-            return text
+        console.log("name",text);
+        if (text != null) {
+            if (text.length > 7) {
+                return text.slice(0, 7) + "..."
+            } else {
+                return text
+            }
+        }
+        else {
+            return "N/A";
         }
     }
 
