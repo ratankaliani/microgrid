@@ -33,14 +33,11 @@ export default class Wallet extends React.Component {
             payload: { id }
         } = jwtDecode(accessToken);
 
-        fetch(REACT_APP_BACKEND_URL+"/users?"+id, {
+        fetch(REACT_APP_BACKEND_URL+"/users/"+id, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             },
-            body: {
-
-            }, 
-            method: 'POST'
+            method: 'GET'
         })
         .then(response => response.json()
         .then(user => {
