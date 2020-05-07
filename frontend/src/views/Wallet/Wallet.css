@@ -198,6 +198,8 @@
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .matches-button-text {
@@ -206,6 +208,18 @@
     font-size: 18px;
     margin-top: 0px;
     margin-bottom: 0px;
+    
+}
+.matches-button-button {
+    font-family: "Apercu-Medium";
+    color: var(--primary-0);
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 .matches-button:hover {
@@ -275,6 +289,8 @@
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .accept-button-text {

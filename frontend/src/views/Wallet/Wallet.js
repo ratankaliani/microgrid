@@ -21,8 +21,78 @@ export default class Wallet extends React.Component {
             loading: false,
             username: "",
             sellPrice: 0,
-            buyPrice: 0
+            buyPrice: 0,
+            seller: null,
+            txPrice: 0,
+            txEnergyAmount: 0,
+            txPPS: 0,
+            tx: null
+
         };
+        this.findMatch = this.findMatch.bind(this);
+        this.acceptTransaction = this.acceptTransaction.bind(this);
+    }
+    acceptTransaction = (minTransaction) => {
+        if (minTransaction != {} && minTransaction != null) {
+            console.log("Update Transaction");
+            console.log(minTransaction)
+            const response = fetch(REACT_APP_BACKEND_URL+"/transaction/update", {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "id": minTransaction._id,
+                    "buyer": this.state.user.publicAddress,
+                    "accepted": true
+                }),
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(updatedTx => {
+                console.log(updatedTx);
+            })
+        }
+    }
+
+    findMatch = () => {
+        console.log("Got to Find Match")
+        const response = fetch(REACT_APP_BACKEND_URL+"/transaction/findMin", {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'GET'
+        })
+        
+        .then(user => {
+            console.log(response)
+            user.json()
+        })
+        .then(tx => {
+            console.log(tx);
+            //Handles if the buyPrice is less than or equal to the PPS
+            if (tx != null && tx.pricePerShare <= this.state.buyPrice) {
+                this.setState({
+                    txPPS: tx.pricePerShare,
+                    seller: tx.seller,
+                    txEnergyAmount: tx.energyAmount,
+                    txPrice: tx.totalPrice,
+                    tx: tx
+                });
+            }
+            else {
+                this.setState({
+                    txPPS: 0,
+                    seller: "No Seller Found.",
+                    txEnergyAmount: 0,
+                    txPrice: 0,
+                    tx: null
+                });
+            }
+            
+        }).then(
+            // console.log(this.state)
+        );
+
     }
 
     componentDidMount() {
@@ -48,8 +118,11 @@ export default class Wallet extends React.Component {
                 sellPrice: user.sellPrice,
                 buyPrice: user.buyPrice
             });
-        })
-        .catch(window.alert));
+        }));
+
+
+
+        
     }
 
     render() {
@@ -63,7 +136,7 @@ export default class Wallet extends React.Component {
         const { loading, user } = this.state;
 
         const username = user && user.username;
-
+        console.log(this.findMatch);
         return (
             <WalletView 
                 loading={loading}
@@ -74,7 +147,18 @@ export default class Wallet extends React.Component {
                 sellPrice={this.state.sellPrice}
                 buyPrice={this.state.buyPrice}
                 producer={this.state.producer}
+                txPPS={this.state.txPPS}
+                seller={this.state.seller}
+                txEnergyAmount ={this.state.txEnergyAmount}
+                txPrice = {this.state.txPrice}
+
+                tx = {this.state.tx}
+                acceptTransaction = {this.acceptTransaction}
+                findMatch = {this.findMatch}
+                
             />
+            
         );
+       
     }
 }

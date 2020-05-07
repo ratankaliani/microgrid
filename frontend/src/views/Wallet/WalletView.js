@@ -8,6 +8,7 @@ export default class WalletView extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log(props)
     }
 
     render() {
@@ -20,6 +21,7 @@ export default class WalletView extends React.Component {
                     <div className="wallet">
                         <div className="outer-container">
                             <p className="wallet-title">MicroGrid Wallet</p>
+                            
                             <div className="container">
                                 <div className="primary-col">
                                     <p className="wallet-subtitle">For Buyers</p>
@@ -63,7 +65,7 @@ export default class WalletView extends React.Component {
                                         <p className="toggle-title">MAKE LISTING</p>
                                         <div className="match-box-text-row">
                                             <p className="match-box-text"><b>Shares</b>: 4</p>
-                                            <p className="match-box-text"><b>Price</b>: .07 ETH</p>
+                                            <p className="match-box-text"><b>Price</b>: {this.props.sellPrice} ETH</p>
                                         </div>
                                         <p className="toggle-info">This will create an energy listing that buyers in your network can purchase.</p>
                                         <div className="adjust-button">
@@ -73,20 +75,25 @@ export default class WalletView extends React.Component {
                                 </div>
                                 <div className="secondary-col">
                                     <p className="wallet-subtitle">New Purchases</p>
-                                    <div className="matches-button">
-                                        <p className="matches-button-text">FIND MATCH</p>
-                                    </div>
+                                    <button className="matches-button"  onClick = {this.props.findMatch} >
+                                     
+                                        <p className="matches-button-text">
+                                        Find Match
+                                        </p>
+                                       
+                                        
+                                    </button>
                                     <div className="match-box">
                                         <p className="match-box-vendor">Vendor:</p>
-                                        <p className="match-box-vendor-value">0x5678909876545678987</p>
-                                        <p className="match-box-display">0.5 ETH</p>
+                                        <p className="match-box-vendor-value">{this.props.seller}</p>
+                                        <p className="match-box-display">{this.props.txPrice} ETH</p>
                                         <div className="match-box-text-row">
-                                            <p className="match-box-text"><b>Shares</b>: 4</p>
-                                            <p className="match-box-text"><b>Price</b>: .07 ETH</p>
+                                            <p className="match-box-text"><b>Units</b>: {this.props.txEnergyAmount} kWh</p>
+                                            <p className="match-box-text"><b>Price</b>: {this.props.txPPS} ETH</p>
                                         </div>
-                                        <div className="accept-button">
+                                        <button className="accept-button" onClick={this.props.acceptTransaction(this.props.tx)}>
                                             <p className="accept-button-text">ACCEPT</p>
-                                        </div>
+                                        </button>
                                     </div>
 
                                 </div>
