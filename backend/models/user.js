@@ -45,11 +45,11 @@ const userSchema = mongoose.Schema({
   },
   buyPrice: {
     type: Number,
-    default: Date.now
+    default: 0.01
   },
   sellPrice: {
     type: Number,
-    default: Date.now
+    default: 0.01
   },
 
 }, {

@@ -26,7 +26,7 @@ export default class WalletView extends React.Component {
                                     <div className="buy-price-toggle">
                                         <p className="toggle-title">BUY PRICE</p>
                                         <div className="toggle-display">
-                                            <p className="toggle-input">{this.props.maxBuy} ETH</p>
+                                            <p className="toggle-input">{this.props.buyPrice} ETH</p>
                                             <div className="adjust-button">
                                                 <p className="adjust-buy-button-text">ADJUST</p>
                                             </div>
@@ -41,7 +41,7 @@ export default class WalletView extends React.Component {
                                         <div className="sell-price-toggle">
                                             <p className="toggle-title">SELL PRICE</p>
                                             <div className="toggle-display">
-                                                <p className="toggle-input">{this.props.minSell} ETH</p>
+                                                <p className="toggle-input">{this.props.sellPrice} ETH</p>
                                                 <div className="adjust-button">
                                                     <p className="adjust-sell-button-text">ADJUST</p>
                                                 </div>

@@ -20,8 +20,8 @@ export default class Wallet extends React.Component {
             user: null,
             loading: false,
             username: "",
-            minSell: 0,
-            maxBuy: 0
+            sellPrice: 0,
+            buyPrice: 0
         };
     }
 
@@ -36,18 +36,20 @@ export default class Wallet extends React.Component {
         fetch(REACT_APP_BACKEND_URL+"/users/"+id, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
-            }
+            },
+            method: 'GET'
         })
-        .then(response => response.json())
+        .then(response => response.json()
         .then(user => {
+            console.log(user);
             this.setState({
                 user: user,
                 producer: user.producer,
-                minSell: user.minSell,
-                maxBuy: user.maxBuy
+                sellPrice: user.sellPrice,
+                buyPrice: user.buyPrice
             });
         })
-        .catch(window.alert);
+        .catch(window.alert));
     }
 
     render() {
@@ -68,9 +70,9 @@ export default class Wallet extends React.Component {
                 onLoggedOut={onLoggedOut}
                 publicAddress={publicAddress}
                 username={username}
-                updateMinSell={this.updateMinSell}
-                minSell={this.state.minSell}
-                maxBuy={this.state.maxBuy}
+                updateSellPrice={this.updateSellPrice}
+                sellPrice={this.state.sellPrice}
+                buyPrice={this.state.buyPrice}
                 producer={this.state.producer}
             />
         );
