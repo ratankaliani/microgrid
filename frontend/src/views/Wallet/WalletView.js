@@ -64,13 +64,13 @@ export default class WalletView extends React.Component {
                                     <div className="sell-price-toggle" style={{marginTop: 32, height: 300}}>
                                         <p className="toggle-title">MAKE LISTING</p>
                                         <div className="match-box-text-row">
-                                            <p className="match-box-text"><b>Shares</b>: 4</p>
+                                            <p className="match-box-text"><b>Shares</b>: 10</p>
                                             <p className="match-box-text"><b>Price</b>: {this.props.sellPrice} ETH</p>
                                         </div>
                                         <p className="toggle-info">This will create an energy listing that buyers in your network can purchase.</p>
-                                        <div className="adjust-button">
+                                        <button className="adjust-button" onClick={this.props.createListing(this.props.user)}>
                                             <p className="adjust-sell-button-text">CREATE</p>
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="secondary-col">

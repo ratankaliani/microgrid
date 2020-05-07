@@ -31,6 +31,28 @@ export default class Wallet extends React.Component {
         };
         this.findMatch = this.findMatch.bind(this);
         this.acceptTransaction = this.acceptTransaction.bind(this);
+        this.createListing = this.createListing.bind(this);
+    }
+    createListing = (user) => {
+        if (user != {} && user != null) {
+            console.log("Create Listing");
+            console.log(user)
+            const response = fetch(REACT_APP_BACKEND_URL+"/transaction/add", {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "energyAmount": 10,
+                    "pricePerShare": user.sellPrice,
+                    "seller": user.publicAddress
+                }),
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(updatedTx => {
+                console.log(updatedTx);
+            })
+        }
     }
     acceptTransaction = (minTransaction) => {
         if (minTransaction != {} && minTransaction != null) {
@@ -63,14 +85,13 @@ export default class Wallet extends React.Component {
             method: 'GET'
         })
         
-        .then(user => {
-            console.log(response)
-            user.json()
+        .then(response => {
+            response.json()
         })
         .then(tx => {
             console.log(tx);
             //Handles if the buyPrice is less than or equal to the PPS
-            if (tx != null && tx.pricePerShare <= this.state.buyPrice) {
+            if (tx != null && tx.pricePerShare <= this.state.user.buyPrice) {
                 this.setState({
                     txPPS: tx.pricePerShare,
                     seller: tx.seller,
@@ -80,6 +101,7 @@ export default class Wallet extends React.Component {
                 });
             }
             else {
+                
                 this.setState({
                     txPPS: 0,
                     seller: "No Seller Found.",
@@ -151,10 +173,11 @@ export default class Wallet extends React.Component {
                 seller={this.state.seller}
                 txEnergyAmount ={this.state.txEnergyAmount}
                 txPrice = {this.state.txPrice}
-
+                user = {this.state.user}
                 tx = {this.state.tx}
                 acceptTransaction = {this.acceptTransaction}
                 findMatch = {this.findMatch}
+                createListing = {this.createListing}
                 
             />
             
