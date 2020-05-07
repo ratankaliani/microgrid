@@ -51,6 +51,7 @@ export default class HomeView extends React.Component {
                 <SidebarView 
                     username={this.props.username}
                     selected="home"
+                    onLoggedOut={this.props.onLoggedOut}
                 />
                 <div className="wallet-container">
                     <div className="home-filler">

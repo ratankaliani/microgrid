@@ -4,13 +4,14 @@ import React from 'react';
 import WalletView from "./WalletView.js"
 import {REACT_APP_BACKEND_URL} from "../../assets/constants.js";
 
-// import Mongo from 'mongodb';
-// import mongoose from 'mongoose';
-// import User from '../../tempModels/user.js';
-// const MongoClient = Mongo.MongoClient;
-// const uri = "mongodb+srv://ratankaliani:bL0cK%3Fp4rT%2A@cluster0-iasb3.mongodb.net/Microgrid?retryWrites=true&w=majority?authSource=admin";
-
-// mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+import Web3 from "web3";
+import {discountContractABI, discountContractAddress} from "../../assets/constants.js";
+const web3 = new Web3(window.web3.currentProvider);
+const getProvider = async () => {
+    await window.web3.currentProvider.enable();
+}
+getProvider();
+const discountContract = new web3.eth.Contract(discountContractABI, discountContractAddress);
 
 export default class Wallet extends React.Component {
 
@@ -74,7 +75,8 @@ export default class Wallet extends React.Component {
                         this.setState({
                             createListingMessage: "This will create an energy listing that buyers in your network can purchase."
                         })
-                    } 
+                    }
+                    this.handleContractUpdate();
                 })
             )
             
@@ -110,6 +112,7 @@ export default class Wallet extends React.Component {
             .then(response => response.json())
             .then(minTx => {
                 // console.log("Minimum Transaction", minTx);
+                this.handleContractPurchase(minTx.totalPrice)
                 user.production.battery = user.production.battery + 0
             }).then(
                 response => fetch(REACT_APP_BACKEND_URL+"/users/update", {
@@ -171,9 +174,8 @@ export default class Wallet extends React.Component {
         console.log(data.buy)
     }
     updateSellPrice = (event) => {
-
     }
-    componentDidMount() {
+    async componentDidMount() {
         const {
             auth: { accessToken }
         } = this.props;
@@ -181,7 +183,7 @@ export default class Wallet extends React.Component {
             payload: { id }
         } = jwtDecode(accessToken);
 
-        fetch(REACT_APP_BACKEND_URL+"/users/"+id, {
+        let publicAddress = await fetch(REACT_APP_BACKEND_URL+"/users/"+id, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             },
@@ -196,13 +198,29 @@ export default class Wallet extends React.Component {
                 sellPrice: user.sellPrice,
                 buyPrice: user.buyPrice,
                 battery: user.production.battery,
-                username: user.username
+                username: user.username,
+                publicAddress: user.publicAddress
             });
-        }));
+            return user.publicAddress;
+        })
+        .catch(window.alert));
 
+    }
 
+    handleContractPurchase = (price) => {
+        let weiPrice = price * 1000000000000000000 //note: transaction must be processed in WEI
+        console.log("paying contract!");
+        discountContract.methods.purchase().send({
+            from: this.state.publicAddress,
+            value: weiPrice,
+        });
+    }
 
-        
+    handleContractUpdate = () => {
+        console.log("updating contract!");
+        discountContract.methods.updateTotalPrice(100000000000).send({
+            from: this.state.publicAddress,
+        });
     }
 
     render() {
@@ -221,7 +239,7 @@ export default class Wallet extends React.Component {
             <WalletView 
                 loading={loading}
                 onLoggedOut={onLoggedOut}
-                publicAddress={publicAddress}
+                publicAddress={this.state.publicAddress}
                 username={this.state.username}
                 updateSellPrice={this.updateSellPrice}
                 sellPrice={this.state.sellPrice}
