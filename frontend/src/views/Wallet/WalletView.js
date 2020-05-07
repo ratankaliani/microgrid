@@ -12,6 +12,20 @@ export default class WalletView extends React.Component {
         // console.log(props)
     }
 
+    shorten = (text) => {
+        console.log("name",text);
+        if (text != null) {
+            if (text.length > 20) {
+                return text.slice(0, 20) + "..."
+            } else {
+                return text
+            }
+        }
+        else {
+            return "N/A";
+        }
+    }
+
     render() {
         // console.log("Render user", this.props.user);
         return (
@@ -47,8 +61,14 @@ export default class WalletView extends React.Component {
                                         <p className="toggle-title">BUY PRICE</p>
                                         <div className="toggle-display">
                                                 <p className="toggle-input">{this.props.buyPrice} ETH</p>
-                                                <div className="adjust-button">
-                                                    <p className="adjust-sell-button-text">ADJUST</p>
+                                                <div style={{flexDirection: "row", display: "flex"}}>
+                                                    <div className="adjust-button" onClick={() => this.props.updateBuyPrice("+")}>
+                                                        <p className="adjust-buy-button-text">+</p>
+                                                    </div>
+                                                    <div style={{width: 8}}></div>
+                                                    <div className="adjust-button" onClick={() => this.props.updateBuyPrice("-")}>
+                                                        <p className="adjust-buy-button-text">-</p>
+                                                    </div>
                                                 </div>
                                         </div>
                                         <p className="toggle-info">This is your minimum price per share (1 kWh). You will only buy energy shares at this price or below.</p>
@@ -61,9 +81,15 @@ export default class WalletView extends React.Component {
                                         <div className="sell-price-toggle">
                                             <p className="toggle-title">SELL PRICE</p>
                                             <div className="toggle-display">
-                                                <p className="toggle-input">{this.props.buyPrice} ETH</p>
-                                                <div className="adjust-button">
-                                                    <p className="adjust-sell-button-text">ADJUST</p>
+                                                <p className="toggle-input">{this.props.sellPrice} ETH</p>
+                                                <div style={{flexDirection: "row", display: "flex"}}>
+                                                    <div className="adjust-button" onClick={() => this.props.updateSellPrice("+")}>
+                                                        <p className="adjust-sell-button-text">+</p>
+                                                    </div>
+                                                    <div style={{width: 8}}></div>
+                                                    <div className="adjust-button" onClick={() => this.props.updateSellPrice("-")}>
+                                                        <p className="adjust-sell-button-text">-</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <p className="toggle-info">This is your minimum price per share (1 kWh). You will only sell energy shares at this price or above.</p>
@@ -72,8 +98,14 @@ export default class WalletView extends React.Component {
                                             <p className="toggle-title">SELL PRICE</p>
                                             <div className="toggle-display">
                                                 <p className="toggle-input">N/A</p>
-                                                <div className="adjust-button">
-                                                    <p className="adjust-sell-button-text">ADJUST</p>
+                                                <div style={{flexDirection: "row", display: "flex"}}>
+                                                    <div className="adjust-button" onClick={() => this.props.updateSellPrice("+")}>
+                                                        <p className="adjust-sell-button-text">+</p>
+                                                    </div>
+                                                    <div style={{width: 8}}></div>
+                                                    <div className="adjust-button" onClick={() => this.props.updateSellPrice("-")}>
+                                                        <p className="adjust-sell-button-text">-</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <p className="toggle-info">This is your minimum price per share (1 kWh). You will only sell energy shares at this price or above.</p>
@@ -94,26 +126,26 @@ export default class WalletView extends React.Component {
                                 <div className="secondary-col">
                                     <p className="wallet-subtitle">New Purchases</p>
                                     <button className="matches-button"  onClick = {this.props.findMatch} >
-                                     
                                         <p className="matches-button-text">
-                                        Find Match
+                                            FIND MATCH
                                         </p>
-                                       
-                                        
                                     </button>
-                                    <div className="match-box">
-                                        <p className="match-box-vendor">Vendor:</p>
-                                        <p className="match-box-vendor-value">{this.props.seller}</p>
-                                        <p className="match-box-display">{this.props.txPrice} ETH</p>
-                                        <div className="match-box-text-row">
-                                            <p className="match-box-text"><b>Shares</b>: {this.props.txEnergyAmount} kWh</p>
-                                            <p className="match-box-text"><b>Price</b>: {this.props.txPPS} ETH</p>
-                                        </div>
-                                        <button className="accept-button" onClick={this.props.acceptTransaction.bind(this, this.props.tx, this.props.user)}>
-                                            <p className="accept-button-text">ACCEPT</p>
-                                        </button>
-                                    </div>
-
+                                    {
+                                        this.props.isMatch ?
+                                        <div className="match-box">
+                                            <p className="match-box-vendor">Vendor:</p>
+                                            <p className="match-box-vendor-value">{this.shorten(this.props.seller)}</p>
+                                            <p className="match-box-display">{this.props.txPrice} ETH</p>
+                                            <div className="match-box-text-row">
+                                                <p className="match-box-text"><b>Shares</b>: {this.props.txEnergyAmount} kWh</p>
+                                                <p className="match-box-text"><b>Price</b>: {this.props.txPPS} ETH</p>
+                                            </div>
+                                            <button className="accept-button" onClick={this.props.acceptTransaction.bind(this, this.props.tx, this.props.user)}>
+                                                <p className="accept-button-text">ACCEPT</p>
+                                            </button>
+                                        </div> :
+                                        <p className="find-min-null">No matches.</p>
+                                    }
                                 </div>
                             </div>
                         </div>

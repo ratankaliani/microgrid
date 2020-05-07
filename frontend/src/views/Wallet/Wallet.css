@@ -308,3 +308,16 @@
 .accept-button:hover {
     opacity: 0.9;
 }
+
+.find-min-null {
+    align-self: flex-start;
+    font-size: 24px;
+    color: var(--primary-1);
+    font-family: "Apercu-Medium";
+
+    padding-bottom: 30px;
+    margin-bottom: 0px;
+    margin-top: 16px;
+    margin-left: 0px;
+    font-weight: 300;
+}

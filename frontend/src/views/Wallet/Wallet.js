@@ -28,6 +28,7 @@ export default class Wallet extends React.Component {
             txEnergyAmount: 0,
             txPPS: 0,
             tx: null,
+            isMatch: false,
             createListingMessage: "This will create an energy listing that buyers in your network can purchase."
 
         };
@@ -151,30 +152,68 @@ export default class Wallet extends React.Component {
                     seller: tx.seller,
                     txEnergyAmount: tx.energyAmount,
                     txPrice: tx.totalPrice,
-                    tx: tx
+                    tx: tx,
+                    isMatch: true
                 });
             }
             else {
-                
                 this.setState({
                     txPPS: 0,
                     seller: "No Seller Found.",
                     txEnergyAmount: 0,
                     txPrice: 0,
-                    tx: null
+                    tx: null,
+                    isMatch: false
                 });
             }
             
         })
 
     }
-    updateBuyPrice = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        console.log(data.buy)
+
+    updateSellPrice = (direction) => {
+        let newSellPrice = this.state.sellPrice;
+        if (direction == "-") {
+            newSellPrice = Math.round(100*(this.state.sellPrice - 0.01))/100
+        } else {
+            newSellPrice = Math.round(100*(this.state.sellPrice + 0.01))/100
+        }
+        fetch(REACT_APP_BACKEND_URL+"/users/update", {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "publicAddress": this.state.publicAddress,
+                "sellPrice": newSellPrice
+            }),
+            method: 'POST'
+        }).then(_ => {
+            this.setState({sellPrice: newSellPrice});
+        });
     }
-    updateSellPrice = (event) => {
+
+    updateBuyPrice = (direction) => {
+        let newBuyPrice = this.state.buyPrice;
+        if (direction == "-") {
+            newBuyPrice = Math.round(100*(this.state.buyPrice - 0.01))/100
+        } else {
+            newBuyPrice = Math.round(100*(this.state.buyPrice + 0.01))/100
+        }
+        fetch(REACT_APP_BACKEND_URL+"/users/update", {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "publicAddress": this.state.publicAddress,
+                "buyPrice": newBuyPrice
+            }),
+            method: 'POST'
+        }).then(_ => {
+            this.setState({buyPrice: newBuyPrice});
+        });
     }
+
+
     async componentDidMount() {
         const {
             auth: { accessToken }
@@ -199,6 +238,7 @@ export default class Wallet extends React.Component {
                 buyPrice: user.buyPrice,
                 battery: user.production.battery,
                 username: user.username,
+                production: user.production,
                 publicAddress: user.publicAddress
             });
             return user.publicAddress;
@@ -255,7 +295,7 @@ export default class Wallet extends React.Component {
                 findMatch = {this.findMatch}
                 createListing = {this.createListing}
                 createListingMessage = {this.state.createListingMessage}
-                
+                isMatch={this.state.isMatch}
                 battery={this.state.battery}
                 updateBuyPrice={this.updateBuyPrice}
             />
