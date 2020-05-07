@@ -47,7 +47,7 @@ export default class SidebarView extends React.Component {
   }
 
   render() {
-    const sidebar = <SidebarContent />;
+    const sidebar = <SidebarContent username={this.props.username} selected={this.props.selected}/>;
 
     const sidebarProps = {
       sidebar,

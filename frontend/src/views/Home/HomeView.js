@@ -42,9 +42,12 @@ export default class HomeView extends React.Component {
     render() {
         return (
             <div>
-                <SidebarView />
+                <SidebarView 
+                    username={this.props.username}
+                    selected="home"
+                />
                 <div className="wallet-container">
-                    <div className="filler">
+                    <div className="home-filler">
                     </div>
                     <div className="wallet">
                         <div className="outer-container">

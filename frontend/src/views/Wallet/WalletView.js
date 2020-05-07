@@ -14,9 +14,12 @@ export default class WalletView extends React.Component {
     render() {
         return (
             <div>
-                <SidebarView />
+                <SidebarView 
+                    username={this.props.username}
+                    selected="wallet"
+                />
                 <div className="wallet-container">
-                    <div className="filler">
+                    <div className="wallet-filler">
                     </div>
                     <div className="wallet">
                         <div className="outer-container">

@@ -49,8 +49,8 @@
   font-weight: 400;
 }
 
-.filler {
-  width: 128px;
+.home-filler {
+  width: 260px;
   height: 100vh;
   background-color: var(--primary-0);
 }
