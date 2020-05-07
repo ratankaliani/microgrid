@@ -110,7 +110,7 @@ export default class Wallet extends React.Component {
             .then(response => response.json())
             .then(minTx => {
                 // console.log("Minimum Transaction", minTx);
-                user.production.battery = user.production.battery + 5
+                user.production.battery = user.production.battery + 0
             }).then(
                 response => fetch(REACT_APP_BACKEND_URL+"/users/update", {
                     headers: {

@@ -46,9 +46,9 @@ export default class WalletView extends React.Component {
                                         <p className="toggle-title">BUY PRICE</p>
                                         <div className="toggle-display">
                                             <p className="toggle-input">{this.props.buyPrice} ETH</p>
-                                            <div className="adjust-button">
+                                            <button className="adjust-button">
                                                 <p className="adjust-buy-button-text">ADJUST</p>
-                                            </div>
+                                            </button>
                                         </div>
                                         <p className="toggle-info">This is your minimum price per share (1 kWh). You will only buy energy shares at this price or below.</p>
                                     </div>
@@ -61,9 +61,9 @@ export default class WalletView extends React.Component {
                                             <p className="toggle-title">SELL PRICE</p>
                                             <div className="toggle-display">
                                                 <p className="toggle-input">{this.props.sellPrice} ETH</p>
-                                                <div className="adjust-button">
+                                                <button className="adjust-button">
                                                     <p className="adjust-sell-button-text">ADJUST</p>
-                                                </div>
+                                                </button>
                                             </div>
                                             <p className="toggle-info">This is your minimum price per share (1 kWh). You will only sell energy shares at this price or above.</p>
                                         </div> :
