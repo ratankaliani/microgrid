@@ -64,9 +64,8 @@ export default class Home extends React.Component {
                     temp.push(transaction);
                 }
             });
-            console.log("BOUGHT", temp);
             this.setState({
-                boughtTransactions: temp
+                boughtTransactions: temp.reverse()
             });
         })
         .catch(window.alert);
@@ -87,7 +86,7 @@ export default class Home extends React.Component {
                 }
             });
             this.setState({
-                soldTransactions: temp
+                soldTransactions: temp.reverse()
             });
         })
         .catch(window.alert);
