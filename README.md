@@ -1,3 +1,3 @@
-# energygrid-sp20-internal
+# MicroGrid
 
 ## Go Version: 1.13.4
