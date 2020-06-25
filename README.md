@@ -30,52 +30,6 @@ For our beta application, we implemented a basic set of security features using 
 [<img src="https://saahilshangle.github.io/images/smart_contract.jpg" width="65%" length="65%"/>](https://docs.google.com/presentation/d/1NNWVx2BMPqyycyE4lmdhekEvGsu1hgPRqYgJBBLIQYQ/edit?usp=sharing)<br>
 <sub>Note: Pseudocode used for ease of explanation</sub>
 
-## Team
-* **Members**: 
-  * Omkar Waingankar ([GitHub](https://github.com/Omkar-Waingankar) | [LinkedIn](https://www.linkedin.com/in/omkar-waingankar))
-  * Ratan Kaliani ([GitHub](https://github.com/ratankaliani) | [LinkedIn](https://www.linkedin.com/in/ratankaliani))
-  * Ruhi Pudipeddi ([GitHub](https://github.com/ruhi1999) | [LinkedIn](https://www.linkedin.com/in/ruhip/))
-  * Saahil Shangle ([GitHub](https://github.com/saahilshangle) | [LinkedIn](https://www.linkedin.com/in/saahilshangle))
-  * Kelvin Xu ([GitHub](https://github.com/kelvinxu97) | [LinkedIn](https://www.linkedin.com/in/kelvinxu97))
-* **Website**: https://blockchain.berkeley.edu/
-* **Team's Experience**:
-We are a group of 5 UC Berkeley students part of Blockchain at Berkeley. 
-  * **Omkar** is a rising senior studying EECS, former Amazon intern, former undergraduate data science researcher, and co-founder of Flipout, an angel-backed sports betting startup. He is currently an 8VC Fellow and software engineering intern at Nylas, a series B startup building unified communications APIs. 
-    * Skills: Full-stack mobile/web development, smart contract development, data engineering, visualization
-    * Languages: Python, Golang, Java, Javascript, Solidity, SQL
-    * Tools/Frameworks: React, MongoDB, Express, Spring, Firebase, Docker, AWS, Kubernetes, Spark, Tableau, Truffle
-  * **Ratan** is a rising sophomore studying EECS, and a former Cisco software intern fascinated by the Internet of Things, Blockchain & Big Data. Currently, Ratan is a Software Engineer Intern at Virgil Quantitative Research (VQR), a quantitative cryptocurrency trading firm based out of NYC, researching the emerging Decentralized Finance (DeFi) market.
-    * Skills: Smart Contracts, Full-Stack Web Development, UI/UX Design, IoT technologies, Data Visualization, DeFi
-    * Languages: Python, JavaScript, MongoDB, Solidity, HTML5/CSS, SQL, R
-    * Libraries/Frameworks: NumPy, Pandas, Express, React, Node.js, Firebase, Docker, AWS
-  * **Ruhi** is a rising senior, studying Computer Science & City Planning. She’s currently interning at Lyft in their autonomous vehicle/self-driving division and is interested in the intersections of software and urban design.
-    * Skills: Product design, full-stack development, urban technical use cases, Figma, Illustrator, blockchain startup freelancer
-    * Languages/Tools/Frameworks: Solidity, Web3, MongoDB, Node.js, Express, React
-  * **Saahil** is a rising junior studying Data Science & Business Administration with internship experience as a PayPal Strategy Analyst and Cisco Product Manager. He is Vice President of a student run pro bono consulting organization and enjoys working on projects that bridge social impact and technology. 
-    * Skills: U.S. energy regulation/initiative domain knowledge, smart contract design, competitive market analysis, commericialization strategy
-    * Languages: Java, Python, JavaScript, Solidity, HTML5/CSS3, R, SQL
-    * Libraries/Frameworks: NumPy, Pandas, Express, React, Node.js, Scikit-learn
-  * **Kelvin** is a rising senior studying Economics, Logic, and Data Science. He is very passionate about trading and studying secondary markets. In 2018, he took a gap year from UC Berkeley and became a full time trader at Amber AI, a leading cryptocurrency hedge fund and liquidity provider. He joined Blockchain at Berkeley earlier that year as a Public Relations Officer, contributed to the student club’s marketing and branding efforts, and is now with the consulting division. Kelvin is currently interning at the Sales and Trading department at Morgan Stanley.
-    * Skills: U.S. energy market landscape knowledge, smart contract design, competitive market analysis, market making strategies, and financial modeling
-
-## Development Roadmap
-* Total Estimated Duration: 14 weeks
-  * Basic PoC already complete
-
-### Milestone 1: Rinkeby -> Volta Testnet
-* Estimated Duration: 4 weeks
-
-### Milestone 2: EW Origin & SSI functionality
-* Estimated Duration: 4 weeks
-
-### Milestone 3: Automated trading
-* Estimated Duration: 4 weeks
-
-### Milestone 4: User Interface
-* Estimated Duration: 2 weeks
-
-# Additional Information
-We already developed a [PoC dApp](https://github.com/saahilshangle/microgrid-blockchain) for P2P energy sharing on an ethereum test net over the course of the past 4 months. In mid-May we had the opportunity to [present](https://docs.google.com/presentation/d/1NNWVx2BMPqyycyE4lmdhekEvGsu1hgPRqYgJBBLIQYQ/edit?usp=sharing) our work to Sam Hartnett, EWF Research & Market Development Manager, who encouraged us to apply. Our team is enthusiastic about the sector and this project, and believe that the EW-DOS infrastructure would the ideal backbone for our platform. While EWF has made great progress globally already, we are particularly interested in penetrating the U.S. energy market and navigating the regulations and existing monopoly set up. 
 
 Some key improvements from our PoC include:
 * **MicroGrid API**: Code refactoring into a more Service Oriented Architecture (SOA), so as to ease the implementation of simplified APIs to expose grid congestion data, core metrics, audit information etc.
