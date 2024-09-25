@@ -14,13 +14,13 @@ The user flow will begin with the authentication login page. Once a user logs in
 
 <sub>Click below for a short demo</sub><br>
 <sub>Note: Does not include SSI/EAC/automation, MongoDB backend</sub><br>
-[<img src="https://saahilshangle.github.io/images/microgrid_home.jpg" width="50%" length="50%"/>](https://www.youtube.com/watch?v=abb4BOO2_os)
+[<img src="/assets/microgrid_logo.png" width="50%" length="50%"/>](https://www.youtube.com/watch?v=abb4BOO2_os)
 
 ### Architecture
 This platform will assign individual energy producers and consumers to microgrid regions where sellers and buyers are matched off-chain. Information about producers' excess energy at any given point in time will be stored in a database. Centralized (e.g. MongoDB) and distributed (e.g. Amazon Redshift) solutions would offer scalability and efficiency. However, a decentralized database (e.g. Orbit DB) would be more in line with the EW-DOS vision given the absence of a central point of failure. For the purposes of our PoC shown above, a centralized database is used for simplicity. MicroGrid may migrate to EW-DOS's Key-Value-Store in the future to fully integrate the EW framework. We then utilize blockchain to execute energy transactions and maintain a complete record of them. EW-Chain smart contracts will handle the exchange of energy rights with EWT/EAC ERC-721 tokens. However, the user experience will be largely abstracted away from the blockchain, and transactions are automated to minimize costs through a continuous process of dynamic energy pricing. A decentralized ledger provides transparent pseudonymous neighbor to neighbor energy management that significantly reduces reliance and expected costs associated with a single energy provider. A web interface will abstract low level blockchain computation, and assist the user in understanding their energy transactions on the microgrid. The implementation of the full-stack dApp demo shown above was built using the MongoDB, Express.js, React.js, Node.js, Provable, and Solidity/Ethereum frameworks. Our front-end application was built entirely in React.
 
 <sub>Click below for a full deck</sub><br>
-[<img src="https://saahilshangle.github.io/images/dapp_flow.jpg" width="45%" length="45%"/>](https://docs.google.com/presentation/d/1NNWVx2BMPqyycyE4lmdhekEvGsu1hgPRqYgJBBLIQYQ/edit?usp=sharing) [<img src="https://saahilshangle.github.io/images/tech_architecture.jpg" width="45%" length="45%"/>](https://docs.google.com/presentation/d/1NNWVx2BMPqyycyE4lmdhekEvGsu1hgPRqYgJBBLIQYQ/edit?usp=sharing)
+[<img src="/assets/dapp_flow.jpg" width="45%" length="45%"/>](/assets/MicroGrid_Final_Deliverable.pdf) [<img src="/assets/tech_architecture.jpg" width="45%" length="45%"/>](/assets/MicroGrid_Final_Deliverable.pdf)
 
 ### Smart Contract
 For our beta application, we implemented a basic set of security features using the Provable API. Once we migrate to Chainlink in order to develop on Volta, we will be able to succesfully connect the powerwall.
