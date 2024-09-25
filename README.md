@@ -24,7 +24,7 @@ Click [here](/assets/MicroGrid_Final_Deliverable.pdf) for the full deck.
 <img src="/assets/dapp_flow.png" width="45%" length="45%"/>
 
 #### Tech Architecture
-<img src="/assets/tech_architecture.png" width="45%" length="45%"/>
+<img src="/assets/splash_page.png" width="45%" length="45%"/>
 
 ### Smart Contract
 For our beta application, we implemented a basic set of security features using the Provable API. Once we migrate to Chainlink in order to develop on Volta, we will be able to succesfully connect the powerwall.
