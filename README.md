@@ -13,20 +13,21 @@ When a prosumer generates power, excess (defined as amounts not expended by the 
 The user flow will begin with the authentication login page. Once a user logs in, they will be taken to a splash page showing several “feeds”. One will be a catalog of energy shares that have been bought, one will be a catalog of energy shares that have been sold, and below both feeds will be a variety of metrics that indicate user “performance” over time. These metrics in specific will be determined after evaluating what information is valuable to users; one example is a line graph showing surplus energy held over time so users can determine whether their buy/sell strategy is wasteful or on-par with their expectations. The visual portrayals of these metrics will provide important information that will help users contextualize the value of energy they are trading through methods like translating energy amounts into recognizable figures (e.g. “You sold enough energy last month to power an 8-floor apartment building!”). A settings page will allow users to edit profile information and adjust two key metrics: their maximum buying price and minimum selling price. Since MicroGrid's primary function is automated energy sharing (which is dependent on SSI data), users will be prompted to permit 3rd party automated trading. We plan to perform exhaustive user testing in both Figma and our fully developed application for usability and feedback in low-fidelity and high-fidelity iterations.
 
 <sub>Click below for a short demo</sub><br>
-<sub>Note: Does not include SSI/EAC/automation, MongoDB backend</sub><br>
 [<img src="/assets/microgrid_logo.png" width="50%" length="50%"/>](https://www.youtube.com/watch?v=abb4BOO2_os)
 
 ### Architecture
 This platform will assign individual energy producers and consumers to microgrid regions where sellers and buyers are matched off-chain. Information about producers' excess energy at any given point in time will be stored in a database. Centralized (e.g. MongoDB) and distributed (e.g. Amazon Redshift) solutions would offer scalability and efficiency. However, a decentralized database (e.g. Orbit DB) would be more in line with the EW-DOS vision given the absence of a central point of failure. For the purposes of our PoC shown above, a centralized database is used for simplicity. MicroGrid may migrate to EW-DOS's Key-Value-Store in the future to fully integrate the EW framework. We then utilize blockchain to execute energy transactions and maintain a complete record of them. EW-Chain smart contracts will handle the exchange of energy rights with EWT/EAC ERC-721 tokens. However, the user experience will be largely abstracted away from the blockchain, and transactions are automated to minimize costs through a continuous process of dynamic energy pricing. A decentralized ledger provides transparent pseudonymous neighbor to neighbor energy management that significantly reduces reliance and expected costs associated with a single energy provider. A web interface will abstract low level blockchain computation, and assist the user in understanding their energy transactions on the microgrid. The implementation of the full-stack dApp demo shown above was built using the MongoDB, Express.js, React.js, Node.js, Provable, and Solidity/Ethereum frameworks. Our front-end application was built entirely in React.
 
-<sub>Click below for a full deck</sub><br>
-[<img src="/assets/dapp_flow.jpg" width="45%" length="45%"/>](/assets/MicroGrid_Final_Deliverable.pdf) [<img src="/assets/tech_architecture.jpg" width="45%" length="45%"/>](/assets/MicroGrid_Final_Deliverable.pdf)
+Click [here](/assets/MicroGrid_Final_Deliverable.pdf) for the full deck.
+
+#### dApp Flow
+<img src="/assets/dapp_flow.jpg" width="45%" length="45%"/>
+
+#### Tech Architecture
+<img src="/assets/tech_architecture.jpg" width="45%" length="45%"/>
 
 ### Smart Contract
 For our beta application, we implemented a basic set of security features using the Provable API. Once we migrate to Chainlink in order to develop on Volta, we will be able to succesfully connect the powerwall.
-
-[<img src="https://saahilshangle.github.io/images/smart_contract.jpg" width="65%" length="65%"/>](https://docs.google.com/presentation/d/1NNWVx2BMPqyycyE4lmdhekEvGsu1hgPRqYgJBBLIQYQ/edit?usp=sharing)<br>
-<sub>Note: Pseudocode used for ease of explanation</sub>
 
 
 Some key improvements from our PoC include:
