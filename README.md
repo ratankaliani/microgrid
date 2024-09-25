@@ -23,7 +23,7 @@ Click [here](/assets/MicroGrid_Final_Deliverable.pdf) for the full deck.
 #### dApp Flow
 <img src="/assets/dapp_flow.png" width="45%" length="45%"/>
 
-#### Tech Architecture
+#### Splash Page
 <img src="/assets/splash_page.png" width="45%" length="45%"/>
 
 ### Smart Contract
